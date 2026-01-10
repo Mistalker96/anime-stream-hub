@@ -44,7 +44,7 @@ const AnimeCardWithPreview = ({
 
   const handleClick = () => {
     if (id) {
-      navigate(`/watch/${id}`);
+      navigate(`/anime/${id}`);
     }
   };
 
