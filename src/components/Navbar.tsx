@@ -1,29 +1,48 @@
-import { Search, Menu, X, User } from "lucide-react";
+import { Search, Menu, X, User, LogOut } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { useAuth } from "@/hooks/useAuth";
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
+  const navigate = useNavigate();
+  const { user, signOut } = useAuth();
 
   const navLinks = [
-    { label: "Home", href: "#" },
+    { label: "Home", href: "/" },
     { label: "Browse", href: "#browse" },
     { label: "Trending", href: "#trending" },
     { label: "New Releases", href: "#new" },
     { label: "My List", href: "#mylist" },
   ];
 
+  const handleLogoClick = () => {
+    navigate("/");
+  };
+
+  const handleAuthClick = () => {
+    if (user) {
+      signOut();
+    } else {
+      navigate("/auth");
+    }
+  };
+
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 glass">
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
-          <div className="flex items-center gap-2">
+          <button
+            onClick={handleLogoClick}
+            className="flex items-center gap-2 hover:opacity-80 transition-opacity"
+          >
             <span className="text-2xl font-bold font-space-grotesk gradient-text">
               AniWatch
             </span>
-          </div>
+          </button>
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center gap-8">
@@ -50,9 +69,18 @@ const Navbar = () => {
                 className="bg-secondary/50 border border-border rounded-full pl-10 pr-4 py-2 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/50 w-64 transition-all duration-300"
               />
             </div>
-            <Button variant="ghost" size="icon">
-              <User className="w-5 h-5" />
+            <Button variant="ghost" size="icon" onClick={handleAuthClick}>
+              {user ? (
+                <LogOut className="w-5 h-5" />
+              ) : (
+                <User className="w-5 h-5" />
+              )}
             </Button>
+            {user && (
+              <span className="text-sm text-muted-foreground">
+                {user.email?.split("@")[0]}
+              </span>
+            )}
           </div>
 
           {/* Mobile Menu Button */}
@@ -87,6 +115,23 @@ const Navbar = () => {
                   {link.label}
                 </a>
               ))}
+              <Button
+                variant="ghost"
+                className="justify-start"
+                onClick={handleAuthClick}
+              >
+                {user ? (
+                  <>
+                    <LogOut className="w-5 h-5 mr-2" />
+                    Sign Out
+                  </>
+                ) : (
+                  <>
+                    <User className="w-5 h-5 mr-2" />
+                    Sign In
+                  </>
+                )}
+              </Button>
             </div>
           </div>
         )}
