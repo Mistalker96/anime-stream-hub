@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom";
 import { Sword, Sparkles, Ghost, Rocket, Heart, Zap, Skull, Laugh } from "lucide-react";
 
 const genres = [
@@ -12,6 +13,12 @@ const genres = [
 ];
 
 const GenreSection = () => {
+  const navigate = useNavigate();
+
+  const handleGenreClick = (genreName: string) => {
+    navigate(`/browse?genre=${genreName}`);
+  };
+
   return (
     <section className="py-16 bg-secondary/30">
       <div className="container mx-auto px-4">
@@ -25,6 +32,7 @@ const GenreSection = () => {
             return (
               <div
                 key={genre.name}
+                onClick={() => handleGenreClick(genre.name)}
                 className="group relative rounded-xl overflow-hidden cursor-pointer animate-fade-in"
                 style={{ animationDelay: `${index * 50}ms` }}
               >
