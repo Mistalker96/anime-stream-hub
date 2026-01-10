@@ -14,7 +14,51 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      anime_videos: {
+        Row: {
+          created_at: string
+          description: string | null
+          episodes: number | null
+          genre: string | null
+          id: string
+          preview_video_url: string | null
+          rating: number | null
+          thumbnail_url: string | null
+          title: string
+          updated_at: string
+          video_path: string
+          year: number | null
+        }
+        Insert: {
+          created_at?: string
+          description?: string | null
+          episodes?: number | null
+          genre?: string | null
+          id?: string
+          preview_video_url?: string | null
+          rating?: number | null
+          thumbnail_url?: string | null
+          title: string
+          updated_at?: string
+          video_path?: string
+          year?: number | null
+        }
+        Update: {
+          created_at?: string
+          description?: string | null
+          episodes?: number | null
+          genre?: string | null
+          id?: string
+          preview_video_url?: string | null
+          rating?: number | null
+          thumbnail_url?: string | null
+          title?: string
+          updated_at?: string
+          video_path?: string
+          year?: number | null
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never

@@ -1,5 +1,5 @@
 import Navbar from "@/components/Navbar";
-import HeroSection from "@/components/HeroSection";
+import HeroCarousel from "@/components/HeroCarousel";
 import AnimeSection from "@/components/AnimeSection";
 import GenreSection from "@/components/GenreSection";
 import Footer from "@/components/Footer";
@@ -8,7 +8,7 @@ const Index = () => {
   return (
     <main className="min-h-screen bg-background">
       <Navbar />
-      <HeroSection />
+      <HeroCarousel />
       <AnimeSection 
         title="Trending Now" 
         subtitle="Most watched anime this week"

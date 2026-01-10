@@ -1,4 +1,4 @@
-import AnimeCard from "@/components/AnimeCard";
+import AnimeCardWithPreview from "@/components/AnimeCardWithPreview";
 import anime1 from "@/assets/anime-1.jpg";
 import anime2 from "@/assets/anime-2.jpg";
 import anime3 from "@/assets/anime-3.jpg";
@@ -12,12 +12,60 @@ interface AnimeSectionProps {
 }
 
 const animeData = [
-  { title: "Dragon's Flame", image: anime1, rating: 9.1, episodes: 24, genre: "Action" },
-  { title: "Midnight Blade", image: anime2, rating: 8.9, episodes: 12, genre: "Fantasy" },
-  { title: "Spirit Mage Academy", image: anime3, rating: 8.7, episodes: 48, genre: "Adventure" },
-  { title: "Neon Ghost Protocol", image: anime4, rating: 9.3, episodes: 13, genre: "Sci-Fi" },
-  { title: "Steel Wing Zero", image: anime5, rating: 8.8, episodes: 50, genre: "Mecha" },
-  { title: "Summer's End", image: anime6, rating: 9.0, episodes: 12, genre: "Slice of Life" },
+  { 
+    id: "1",
+    title: "Dragon's Flame", 
+    image: anime1, 
+    rating: 9.1, 
+    episodes: 24, 
+    genre: "Action",
+    previewVideo: "" // Add preview video URL here
+  },
+  { 
+    id: "2",
+    title: "Midnight Blade", 
+    image: anime2, 
+    rating: 8.9, 
+    episodes: 12, 
+    genre: "Fantasy",
+    previewVideo: ""
+  },
+  { 
+    id: "3",
+    title: "Spirit Mage Academy", 
+    image: anime3, 
+    rating: 8.7, 
+    episodes: 48, 
+    genre: "Adventure",
+    previewVideo: ""
+  },
+  { 
+    id: "4",
+    title: "Neon Ghost Protocol", 
+    image: anime4, 
+    rating: 9.3, 
+    episodes: 13, 
+    genre: "Sci-Fi",
+    previewVideo: ""
+  },
+  { 
+    id: "5",
+    title: "Steel Wing Zero", 
+    image: anime5, 
+    rating: 8.8, 
+    episodes: 50, 
+    genre: "Mecha",
+    previewVideo: ""
+  },
+  { 
+    id: "6",
+    title: "Summer's End", 
+    image: anime6, 
+    rating: 9.0, 
+    episodes: 12, 
+    genre: "Slice of Life",
+    previewVideo: ""
+  },
 ];
 
 const AnimeSection = ({ title, subtitle }: AnimeSectionProps) => {
@@ -46,11 +94,11 @@ const AnimeSection = ({ title, subtitle }: AnimeSectionProps) => {
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4 md:gap-6">
           {animeData.map((anime, index) => (
             <div
-              key={anime.title}
+              key={anime.id}
               className="animate-fade-in"
               style={{ animationDelay: `${index * 100}ms` }}
             >
-              <AnimeCard {...anime} />
+              <AnimeCardWithPreview {...anime} />
             </div>
           ))}
         </div>
