@@ -147,23 +147,34 @@ export type Database = {
       user_anime_lists: {
         Row: {
           anime_id: string
+          category: string
           created_at: string
           id: string
           user_id: string
         }
         Insert: {
           anime_id: string
+          category?: string
           created_at?: string
           id?: string
           user_id: string
         }
         Update: {
           anime_id?: string
+          category?: string
           created_at?: string
           id?: string
           user_id?: string
         }
-        Relationships: []
+        Relationships: [
+          {
+            foreignKeyName: "user_anime_lists_anime_id_fkey"
+            columns: ["anime_id"]
+            isOneToOne: false
+            referencedRelation: "anime_videos"
+            referencedColumns: ["id"]
+          },
+        ]
       }
     }
     Views: {

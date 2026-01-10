@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
 import { useAuth } from "@/hooks/useAuth";
 import { Button } from "@/components/ui/button";
-import { ArrowLeft, Trash2, Play, Star, Film } from "lucide-react";
+import { ArrowLeft, Trash2, Play, Star, Film, FolderPlus } from "lucide-react";
 import anime1 from "@/assets/anime-1.jpg";
 import anime2 from "@/assets/anime-2.jpg";
 import anime3 from "@/assets/anime-3.jpg";
@@ -14,6 +14,7 @@ import anime6 from "@/assets/anime-6.jpg";
 interface AnimeInList {
   id: string;
   anime_id: string;
+  category: string;
   anime: {
     id: string;
     title: string;
@@ -23,6 +24,15 @@ interface AnimeInList {
     genre: string | null;
   } | null;
 }
+
+type CategoryType = "all" | "plan_to_watch" | "watching" | "dropped";
+
+const categories: { key: CategoryType; label: string }[] = [
+  { key: "all", label: "All" },
+  { key: "plan_to_watch", label: "Plan to Watch" },
+  { key: "watching", label: "Watching" },
+  { key: "dropped", label: "Dropped" },
+];
 
 // Mock images for display
 const mockImages: Record<string, string> = {
@@ -39,6 +49,7 @@ const MyList = () => {
   const { user } = useAuth();
   const [myList, setMyList] = useState<AnimeInList[]>([]);
   const [loading, setLoading] = useState(true);
+  const [activeCategory, setActiveCategory] = useState<CategoryType>("all");
 
   useEffect(() => {
     if (user) {
@@ -54,6 +65,7 @@ const MyList = () => {
       .select(`
         id,
         anime_id,
+        category,
         anime:anime_videos (
           id,
           title,
@@ -81,6 +93,22 @@ const MyList = () => {
       fetchMyList();
     }
   };
+
+  const handleCategoryChange = async (listId: string, newCategory: string) => {
+    const { error } = await supabase
+      .from("user_anime_lists")
+      .update({ category: newCategory })
+      .eq("id", listId);
+
+    if (!error) {
+      fetchMyList();
+    }
+  };
+
+  const filteredList =
+    activeCategory === "all"
+      ? myList
+      : myList.filter((item) => item.category === activeCategory);
 
   if (!user) {
     return (
@@ -115,13 +143,37 @@ const MyList = () => {
           </h1>
         </div>
 
+        {/* Category Tabs */}
+        <div className="flex flex-wrap gap-2 mb-8">
+          {categories.map((cat) => (
+            <Button
+              key={cat.key}
+              variant={activeCategory === cat.key ? "hero" : "glass"}
+              size="sm"
+              onClick={() => setActiveCategory(cat.key)}
+              className="rounded-full"
+            >
+              {cat.label}
+              {cat.key !== "all" && (
+                <span className="ml-2 text-xs opacity-70">
+                  ({myList.filter((item) => item.category === cat.key).length})
+                </span>
+              )}
+            </Button>
+          ))}
+        </div>
+
         {loading ? (
           <div className="text-center py-16">
             <div className="animate-pulse text-primary text-xl">Loading...</div>
           </div>
-        ) : myList.length === 0 ? (
+        ) : filteredList.length === 0 ? (
           <div className="text-center py-16">
-            <p className="text-muted-foreground mb-4">Your list is empty</p>
+            <p className="text-muted-foreground mb-4">
+              {activeCategory === "all"
+                ? "Your list is empty"
+                : `No anime in "${categories.find((c) => c.key === activeCategory)?.label}"`}
+            </p>
             <p className="text-sm text-muted-foreground mb-8">
               Add anime to your list by clicking "Add to List" on any anime page
             </p>
@@ -131,7 +183,7 @@ const MyList = () => {
           </div>
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {myList.map((item) => (
+            {filteredList.map((item) => (
               <div
                 key={item.id}
                 className="glass rounded-xl overflow-hidden group"
@@ -154,7 +206,7 @@ const MyList = () => {
                   </div>
                 </div>
                 <div className="p-4">
-                  <div className="flex items-start justify-between gap-2">
+                  <div className="flex items-start justify-between gap-2 mb-3">
                     <div className="flex-1">
                       <h3 className="font-semibold text-foreground mb-1 line-clamp-1">
                         {item.anime?.title || "Unknown Anime"}
@@ -185,6 +237,25 @@ const MyList = () => {
                     >
                       <Trash2 className="w-4 h-4" />
                     </Button>
+                  </div>
+
+                  {/* Category Selector */}
+                  <div className="flex gap-1 flex-wrap">
+                    {categories
+                      .filter((c) => c.key !== "all")
+                      .map((cat) => (
+                        <button
+                          key={cat.key}
+                          onClick={() => handleCategoryChange(item.id, cat.key)}
+                          className={`text-xs px-2 py-1 rounded-full transition-colors ${
+                            item.category === cat.key
+                              ? "bg-primary text-primary-foreground"
+                              : "bg-muted text-muted-foreground hover:bg-muted/80"
+                          }`}
+                        >
+                          {cat.label}
+                        </button>
+                      ))}
                   </div>
                 </div>
               </div>
