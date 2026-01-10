@@ -42,6 +42,7 @@ export const useAnimeList = (animeId?: string) => {
     const { error } = await supabase.from("user_anime_lists").insert({
       user_id: user.id,
       anime_id: animeId,
+      category: "plan_to_watch",
     });
 
     setLoading(false);

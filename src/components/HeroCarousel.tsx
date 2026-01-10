@@ -2,10 +2,13 @@ import { useState, useEffect } from "react";
 import { Play, Plus, Star, ChevronLeft, ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useNavigate } from "react-router-dom";
+import { useAnimeList } from "@/hooks/useAnimeList";
 import heroImage from "@/assets/hero-anime.jpg";
 import anime1 from "@/assets/anime-1.jpg";
 import anime2 from "@/assets/anime-2.jpg";
 import anime3 from "@/assets/anime-3.jpg";
+import anime4 from "@/assets/anime-4.jpg";
+import anime5 from "@/assets/anime-5.jpg";
 
 interface HeroSlide {
   id: string;
@@ -22,51 +25,75 @@ interface HeroSlide {
 const slides: HeroSlide[] = [
   {
     id: "1",
-    title: "Shadow",
-    subtitle: "Warrior",
+    title: "One",
+    subtitle: "Piece",
     image: heroImage,
-    rating: 9.2,
-    episodes: 24,
-    genres: "Action, Fantasy",
-    year: 2024,
+    rating: 9.5,
+    episodes: 1100,
+    genres: "Action, Adventure, Comedy",
+    year: 1999,
     description:
-      "In a world where shadows hold unimaginable power, one warrior rises to challenge the darkness. Follow the epic journey of redemption, sacrifice, and the eternal battle between light and shadow.",
+      "Follow Monkey D. Luffy and his pirate crew in their epic adventure to find the legendary One Piece treasure and become the Pirate King. A journey of friendship, dreams, and battles across the Grand Line.",
   },
   {
     id: "2",
-    title: "Dragon's",
-    subtitle: "Flame",
+    title: "Attack on",
+    subtitle: "Titan",
     image: anime1,
-    rating: 9.1,
-    episodes: 24,
-    genres: "Action, Adventure",
-    year: 2024,
+    rating: 9.4,
+    episodes: 94,
+    genres: "Action, Drama, Fantasy",
+    year: 2013,
     description:
-      "Ancient dragons awaken from their slumber, and only those with the flame within can stand against the coming storm. An epic saga of power, destiny, and fire.",
+      "Humanity fights for survival against giant humanoid Titans that devour humans. Eren Yeager and his friends join the military to uncover the truth behind the Titans and reclaim their world.",
   },
   {
     id: "3",
-    title: "Midnight",
-    subtitle: "Blade",
+    title: "Jujutsu",
+    subtitle: "Kaisen",
     image: anime2,
-    rating: 8.9,
-    episodes: 12,
-    genres: "Fantasy, Drama",
-    year: 2024,
+    rating: 9.2,
+    episodes: 48,
+    genres: "Action, Supernatural, School",
+    year: 2020,
     description:
-      "Under the pale moonlight, a lone swordsman walks the path of vengeance. His blade cuts through darkness, seeking the truth hidden in the shadows of the night.",
+      "Yuji Itadori joins a secret organization of Jujutsu Sorcerers to eliminate a powerful Curse. Navigate the dark world of curses, sorcery, and the battle between good and evil.",
   },
   {
     id: "4",
-    title: "Spirit",
-    subtitle: "Academy",
+    title: "Fire",
+    subtitle: "Force",
     image: anime3,
-    rating: 8.7,
+    rating: 8.8,
     episodes: 48,
-    genres: "Adventure, School",
-    year: 2024,
+    genres: "Action, Supernatural, Sci-Fi",
+    year: 2019,
     description:
-      "At the most prestigious academy for spirit wielders, young students discover their powers and forge bonds that will shape the future of the magical realm.",
+      "In a world where humans spontaneously combust, Special Fire Force Company 8 fights against Infernals. Shinra Kusakabe seeks the truth about his family and the source of these flames.",
+  },
+  {
+    id: "5",
+    title: "Demon",
+    subtitle: "Slayer",
+    image: anime4,
+    rating: 9.3,
+    episodes: 55,
+    genres: "Action, Supernatural, Historical",
+    year: 2019,
+    description:
+      "Tanjiro Kamado becomes a demon slayer to avenge his family and cure his sister Nezuko. Experience breathtaking animation and emotional storytelling in this tale of determination.",
+  },
+  {
+    id: "6",
+    title: "My Hero",
+    subtitle: "Academia",
+    image: anime5,
+    rating: 8.9,
+    episodes: 138,
+    genres: "Action, Comedy, School",
+    year: 2016,
+    description:
+      "In a world where 80% of the population has superpowers, Izuku Midoriya dreams of becoming a hero despite being born powerless. His life changes when he meets the greatest hero, All Might.",
   },
 ];
 
@@ -74,6 +101,8 @@ const HeroCarousel = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isTransitioning, setIsTransitioning] = useState(false);
   const navigate = useNavigate();
+  const slide = slides[currentSlide];
+  const { isInList, toggleList, loading } = useAnimeList(slide.id);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -109,8 +138,6 @@ const HeroCarousel = () => {
     }
   };
 
-  const slide = slides[currentSlide];
-
   return (
     <section className="relative h-screen w-full overflow-hidden">
       {/* Background Image */}
@@ -137,7 +164,7 @@ const HeroCarousel = () => {
           {/* Badge */}
           <div className="inline-flex items-center gap-2 glass rounded-full px-4 py-2 mb-6">
             <span className="w-2 h-2 rounded-full bg-primary animate-pulse" />
-            <span className="text-sm text-muted-foreground">Now Streaming</span>
+            <span className="text-sm text-muted-foreground">Popular Anime</span>
           </div>
 
           {/* Title */}
@@ -153,7 +180,7 @@ const HeroCarousel = () => {
               <span className="text-foreground font-medium">{slide.rating}</span>
             </div>
             <span>•</span>
-            <span>{slide.episodes} Episodes</span>
+            <span>{slide.episodes}+ Episodes</span>
             <span>•</span>
             <span>{slide.genres}</span>
             <span>•</span>
@@ -171,9 +198,14 @@ const HeroCarousel = () => {
               <Play className="w-5 h-5 fill-current" />
               Watch Now
             </Button>
-            <Button variant="glass" size="xl">
-              <Plus className="w-5 h-5" />
-              Add to List
+            <Button 
+              variant="glass" 
+              size="xl" 
+              onClick={toggleList}
+              disabled={loading}
+            >
+              <Plus className={`w-5 h-5 transition-transform ${isInList ? "rotate-45" : ""}`} />
+              {isInList ? "In List" : "Add to List"}
             </Button>
           </div>
         </div>
