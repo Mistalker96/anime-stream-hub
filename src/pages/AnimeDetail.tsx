@@ -2,7 +2,8 @@ import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
-import { ArrowLeft, Play, Plus, Star, Calendar, Film } from "lucide-react";
+import { ArrowLeft, Play, Plus, Check, Star, Calendar, Film, Eye } from "lucide-react";
+import { useAnimeList } from "@/hooks/useAnimeList";
 import CommentSection from "@/components/CommentSection";
 import EpisodeList from "@/components/EpisodeList";
 import anime1 from "@/assets/anime-1.jpg";
@@ -21,6 +22,7 @@ interface AnimeData {
   genre: string | null;
   year: number | null;
   thumbnail_url: string | null;
+  view_count: number;
 }
 
 interface Episode {
@@ -43,6 +45,7 @@ const mockAnimeData: Record<string, AnimeData & { image: string }> = {
     year: 2024,
     thumbnail_url: null,
     image: anime1,
+    view_count: 15420,
   },
   "2": {
     id: "2",
@@ -54,6 +57,7 @@ const mockAnimeData: Record<string, AnimeData & { image: string }> = {
     year: 2024,
     thumbnail_url: null,
     image: anime2,
+    view_count: 12350,
   },
   "3": {
     id: "3",
@@ -65,6 +69,7 @@ const mockAnimeData: Record<string, AnimeData & { image: string }> = {
     year: 2024,
     thumbnail_url: null,
     image: anime3,
+    view_count: 28900,
   },
   "4": {
     id: "4",
@@ -76,6 +81,7 @@ const mockAnimeData: Record<string, AnimeData & { image: string }> = {
     year: 2024,
     thumbnail_url: null,
     image: anime4,
+    view_count: 45200,
   },
   "5": {
     id: "5",
@@ -87,6 +93,7 @@ const mockAnimeData: Record<string, AnimeData & { image: string }> = {
     year: 2024,
     thumbnail_url: null,
     image: anime5,
+    view_count: 8700,
   },
   "6": {
     id: "6",
@@ -98,6 +105,7 @@ const mockAnimeData: Record<string, AnimeData & { image: string }> = {
     year: 2024,
     thumbnail_url: null,
     image: anime6,
+    view_count: 32100,
   },
 };
 
@@ -107,6 +115,7 @@ const AnimeDetail = () => {
   const [anime, setAnime] = useState<(AnimeData & { image?: string }) | null>(null);
   const [episodes, setEpisodes] = useState<Episode[]>([]);
   const [loading, setLoading] = useState(true);
+  const { isInList, loading: listLoading, toggleList } = useAnimeList(id);
 
   useEffect(() => {
     const fetchAnimeData = async () => {
@@ -225,6 +234,10 @@ const AnimeDetail = () => {
                 <span>{anime.year}</span>
               </div>
             )}
+            <div className="flex items-center gap-1">
+              <Eye className="w-4 h-4" />
+              <span>{((anime.view_count || 0) / 1000).toFixed(1)}k views</span>
+            </div>
           </div>
 
           {/* Description */}
@@ -238,9 +251,23 @@ const AnimeDetail = () => {
               <Play className="w-5 h-5 fill-current" />
               Watch Now
             </Button>
-            <Button variant="glass" size="xl">
-              <Plus className="w-5 h-5" />
-              Add to List
+            <Button 
+              variant={isInList ? "secondary" : "glass"} 
+              size="xl"
+              onClick={toggleList}
+              disabled={listLoading}
+            >
+              {isInList ? (
+                <>
+                  <Check className="w-5 h-5" />
+                  In My List
+                </>
+              ) : (
+                <>
+                  <Plus className="w-5 h-5" />
+                  Add to List
+                </>
+              )}
             </Button>
           </div>
         </div>

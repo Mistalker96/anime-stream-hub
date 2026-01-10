@@ -109,6 +109,7 @@ export type Database = {
           title: string
           updated_at: string
           video_path: string
+          view_count: number
           year: number | null
         }
         Insert: {
@@ -123,6 +124,7 @@ export type Database = {
           title: string
           updated_at?: string
           video_path?: string
+          view_count?: number
           year?: number | null
         }
         Update: {
@@ -137,7 +139,29 @@ export type Database = {
           title?: string
           updated_at?: string
           video_path?: string
+          view_count?: number
           year?: number | null
+        }
+        Relationships: []
+      }
+      user_anime_lists: {
+        Row: {
+          anime_id: string
+          created_at: string
+          id: string
+          user_id: string
+        }
+        Insert: {
+          anime_id: string
+          created_at?: string
+          id?: string
+          user_id: string
+        }
+        Update: {
+          anime_id?: string
+          created_at?: string
+          id?: string
+          user_id?: string
         }
         Relationships: []
       }
@@ -146,7 +170,7 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      increment_view_count: { Args: { anime_uuid: string }; Returns: undefined }
     }
     Enums: {
       [_ in never]: never

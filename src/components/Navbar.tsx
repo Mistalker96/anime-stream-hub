@@ -12,10 +12,8 @@ const Navbar = () => {
 
   const navLinks = [
     { label: "Home", href: "/" },
-    { label: "Browse", href: "#browse" },
-    { label: "Trending", href: "#trending" },
-    { label: "New Releases", href: "#new" },
-    { label: "My List", href: "#mylist" },
+    { label: "Browse", href: "/browse" },
+    { label: "My List", href: "/my-list" },
   ];
 
   const handleLogoClick = () => {
@@ -47,13 +45,13 @@ const Navbar = () => {
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center gap-8">
             {navLinks.map((link) => (
-              <a
+              <button
                 key={link.label}
-                href={link.href}
+                onClick={() => navigate(link.href)}
                 className="text-muted-foreground hover:text-foreground transition-colors duration-300 text-sm font-medium"
               >
                 {link.label}
-              </a>
+              </button>
             ))}
           </div>
 
@@ -107,13 +105,16 @@ const Navbar = () => {
                 />
               </div>
               {navLinks.map((link) => (
-                <a
+                <button
                   key={link.label}
-                  href={link.href}
-                  className="text-muted-foreground hover:text-foreground transition-colors duration-300 text-sm font-medium py-2"
+                  onClick={() => {
+                    navigate(link.href);
+                    setIsMenuOpen(false);
+                  }}
+                  className="text-muted-foreground hover:text-foreground transition-colors duration-300 text-sm font-medium py-2 text-left"
                 >
                   {link.label}
-                </a>
+                </button>
               ))}
               <Button
                 variant="ghost"

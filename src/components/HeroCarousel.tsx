@@ -167,7 +167,7 @@ const HeroCarousel = () => {
 
           {/* Buttons */}
           <div className="flex items-center gap-4">
-            <Button variant="hero" size="xl">
+            <Button variant="hero" size="xl" onClick={() => navigate(`/watch/${slide.id}?ep=1`)}>
               <Play className="w-5 h-5 fill-current" />
               Watch Now
             </Button>

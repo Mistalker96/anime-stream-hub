@@ -2,9 +2,10 @@ import { useState, useEffect } from "react";
 import { useParams, useNavigate, useSearchParams } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
-import { ArrowLeft } from "lucide-react";
+import { ArrowLeft, Eye, Star } from "lucide-react";
 import VideoPlayer from "@/components/VideoPlayer";
 import EpisodeList from "@/components/EpisodeList";
+import CommentSection from "@/components/CommentSection";
 
 interface AnimeVideo {
   id: string;
@@ -16,6 +17,7 @@ interface AnimeVideo {
   episodes: number | null;
   genre: string | null;
   year: number | null;
+  view_count: number;
 }
 
 interface Episode {
@@ -46,6 +48,8 @@ const Watch = () => {
   const [loading, setLoading] = useState(true);
   const [currentEpisode, setCurrentEpisode] = useState(1);
   const [currentVideoPath, setCurrentVideoPath] = useState("");
+  const [averageRating, setAverageRating] = useState<number | null>(null);
+  const [totalRatings, setTotalRatings] = useState(0);
 
   useEffect(() => {
     const ep = searchParams.get("ep");
@@ -69,6 +73,9 @@ const Watch = () => {
         setVideo(data);
         setCurrentVideoPath(data.video_path);
 
+        // Increment view count
+        await supabase.rpc("increment_view_count", { anime_uuid: id });
+
         // Fetch episodes
         const { data: episodesData } = await supabase
           .from("anime_episodes")
@@ -90,13 +97,14 @@ const Watch = () => {
         setVideo({
           id: id,
           title: mockTitles[id] || "Video Player",
-          video_path: "", // Empty - user will add later
+          video_path: "",
           thumbnail_url: null,
           description: null,
           rating: null,
           episodes: 12,
           genre: null,
           year: null,
+          view_count: Math.floor(Math.random() * 50000) + 5000,
         });
       }
       setLoading(false);
@@ -104,6 +112,28 @@ const Watch = () => {
 
     fetchVideo();
   }, [id, currentEpisode]);
+
+  // Fetch average rating from comments
+  useEffect(() => {
+    const fetchRatings = async () => {
+      if (!id) return;
+
+      const { data } = await supabase
+        .from("anime_comments")
+        .select("rating")
+        .eq("anime_id", id)
+        .not("rating", "is", null);
+
+      if (data && data.length > 0) {
+        const ratings = data.map(c => c.rating).filter(r => r !== null) as number[];
+        const avg = ratings.reduce((a, b) => a + b, 0) / ratings.length;
+        setAverageRating(Math.round(avg * 10) / 10);
+        setTotalRatings(ratings.length);
+      }
+    };
+
+    fetchRatings();
+  }, [id]);
 
   const handleEpisodeSelect = (episodeNumber: number) => {
     setCurrentEpisode(episodeNumber);
@@ -143,17 +173,34 @@ const Watch = () => {
     <div className="min-h-screen bg-background">
       {/* Header */}
       <div className="fixed top-0 left-0 right-0 z-50 glass">
-        <div className="container mx-auto px-4 h-16 flex items-center gap-4">
-          <Button variant="ghost" size="icon" onClick={() => navigate(`/anime/${id}`)}>
-            <ArrowLeft className="w-5 h-5" />
-          </Button>
-          <div>
-            <h1 className="font-semibold text-foreground">
-              {video?.title || "Video Player"}
-            </h1>
-            <p className="text-sm text-muted-foreground">
-              Episode {currentEpisode} {video?.genre && `• ${video.genre}`}
-            </p>
+        <div className="container mx-auto px-4 h-16 flex items-center justify-between">
+          <div className="flex items-center gap-4">
+            <Button variant="ghost" size="icon" onClick={() => navigate(`/anime/${id}`)}>
+              <ArrowLeft className="w-5 h-5" />
+            </Button>
+            <div>
+              <h1 className="font-semibold text-foreground">
+                {video?.title || "Video Player"}
+              </h1>
+              <p className="text-sm text-muted-foreground">
+                Episode {currentEpisode} {video?.genre && `• ${video.genre}`}
+              </p>
+            </div>
+          </div>
+          
+          {/* View Count & Rating */}
+          <div className="flex items-center gap-4 text-sm">
+            <div className="flex items-center gap-1 text-muted-foreground">
+              <Eye className="w-4 h-4" />
+              <span>{((video?.view_count || 0) / 1000).toFixed(1)}k views</span>
+            </div>
+            {averageRating && (
+              <div className="flex items-center gap-1">
+                <Star className="w-4 h-4 text-primary fill-primary" />
+                <span className="text-foreground font-medium">{averageRating}</span>
+                <span className="text-muted-foreground">({totalRatings})</span>
+              </div>
+            )}
           </div>
         </div>
       </div>
@@ -170,24 +217,72 @@ const Watch = () => {
         />
       </div>
 
-      {/* Episode Info & List */}
+      {/* Content */}
       <div className="container mx-auto px-4 py-8">
         {/* Current Episode Info */}
         <div className="mb-8 p-4 glass rounded-xl">
-          <h2 className="text-xl font-bold font-space-grotesk text-foreground mb-2">
-            Episode {currentEpisode}
-          </h2>
+          <div className="flex items-center justify-between mb-2">
+            <h2 className="text-xl font-bold font-space-grotesk text-foreground">
+              Episode {currentEpisode}
+            </h2>
+            <div className="flex items-center gap-2 text-sm text-muted-foreground">
+              <Eye className="w-4 h-4" />
+              <span>{((video?.view_count || 0) / 1000).toFixed(1)}k views</span>
+            </div>
+          </div>
           <p className="text-muted-foreground">
             {video?.description || "Episode description will appear here."}
           </p>
         </div>
 
+        {/* User Rating Section */}
+        <div className="mb-8 p-4 glass rounded-xl">
+          <div className="flex items-center justify-between">
+            <div>
+              <h3 className="font-semibold text-foreground mb-1">User Rating</h3>
+              <p className="text-sm text-muted-foreground">
+                Based on {totalRatings} ratings from viewers
+              </p>
+            </div>
+            <div className="flex items-center gap-2">
+              {averageRating ? (
+                <>
+                  <div className="flex items-center gap-1">
+                    {[1, 2, 3, 4, 5].map((star) => (
+                      <Star
+                        key={star}
+                        className={`w-5 h-5 ${
+                          star <= Math.round(averageRating)
+                            ? "text-primary fill-primary"
+                            : "text-muted-foreground/30"
+                        }`}
+                      />
+                    ))}
+                  </div>
+                  <span className="text-2xl font-bold text-foreground ml-2">
+                    {averageRating}
+                  </span>
+                </>
+              ) : (
+                <span className="text-muted-foreground">No ratings yet</span>
+              )}
+            </div>
+          </div>
+        </div>
+
         {/* Episodes Grid */}
-        <EpisodeList
-          episodes={episodes}
-          currentEpisode={currentEpisode}
-          onEpisodeSelect={handleEpisodeSelect}
-        />
+        <div className="mb-8">
+          <EpisodeList
+            episodes={episodes}
+            currentEpisode={currentEpisode}
+            onEpisodeSelect={handleEpisodeSelect}
+          />
+        </div>
+
+        {/* Comments Section */}
+        <div className="pb-8">
+          <CommentSection animeId={id || ""} />
+        </div>
       </div>
     </div>
   );
