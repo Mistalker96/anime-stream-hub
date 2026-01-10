@@ -14,6 +14,88 @@ export type Database = {
   }
   public: {
     Tables: {
+      anime_comments: {
+        Row: {
+          anime_id: string
+          content: string
+          created_at: string
+          id: string
+          rating: number | null
+          updated_at: string
+          user_email: string
+          user_id: string
+        }
+        Insert: {
+          anime_id: string
+          content: string
+          created_at?: string
+          id?: string
+          rating?: number | null
+          updated_at?: string
+          user_email: string
+          user_id: string
+        }
+        Update: {
+          anime_id?: string
+          content?: string
+          created_at?: string
+          id?: string
+          rating?: number | null
+          updated_at?: string
+          user_email?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "anime_comments_anime_id_fkey"
+            columns: ["anime_id"]
+            isOneToOne: false
+            referencedRelation: "anime_videos"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      anime_episodes: {
+        Row: {
+          anime_id: string
+          created_at: string
+          duration: string | null
+          episode_number: number
+          id: string
+          thumbnail_url: string | null
+          title: string
+          video_path: string
+        }
+        Insert: {
+          anime_id: string
+          created_at?: string
+          duration?: string | null
+          episode_number: number
+          id?: string
+          thumbnail_url?: string | null
+          title: string
+          video_path?: string
+        }
+        Update: {
+          anime_id?: string
+          created_at?: string
+          duration?: string | null
+          episode_number?: number
+          id?: string
+          thumbnail_url?: string | null
+          title?: string
+          video_path?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "anime_episodes_anime_id_fkey"
+            columns: ["anime_id"]
+            isOneToOne: false
+            referencedRelation: "anime_videos"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       anime_videos: {
         Row: {
           created_at: string
