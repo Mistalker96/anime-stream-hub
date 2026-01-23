@@ -101,6 +101,23 @@ const Browse = () => {
     return mockItem?.image || anime1;
   };
 
+  const getGenreTheme = (genre: string | null) => {
+    if (!genre) return { gradient: "from-primary to-primary/70", shadow: "shadow-primary/30", border: "border-primary/30" };
+    const genreLower = genre.toLowerCase();
+    
+    if (genreLower.includes("action")) return { gradient: "from-red-500 to-orange-500", shadow: "shadow-red-500/30", border: "border-red-500/30" };
+    if (genreLower.includes("fantasy")) return { gradient: "from-purple-500 to-pink-500", shadow: "shadow-purple-500/30", border: "border-purple-500/30" };
+    if (genreLower.includes("horror")) return { gradient: "from-gray-600 to-gray-800", shadow: "shadow-gray-600/30", border: "border-gray-600/30" };
+    if (genreLower.includes("sci-fi") || genreLower.includes("mecha")) return { gradient: "from-cyan-500 to-blue-500", shadow: "shadow-cyan-500/30", border: "border-cyan-500/30" };
+    if (genreLower.includes("romance")) return { gradient: "from-pink-500 to-rose-500", shadow: "shadow-pink-500/30", border: "border-pink-500/30" };
+    if (genreLower.includes("supernatural")) return { gradient: "from-yellow-500 to-amber-500", shadow: "shadow-yellow-500/30", border: "border-yellow-500/30" };
+    if (genreLower.includes("thriller")) return { gradient: "from-emerald-600 to-teal-700", shadow: "shadow-emerald-600/30", border: "border-emerald-600/30" };
+    if (genreLower.includes("comedy")) return { gradient: "from-orange-400 to-yellow-400", shadow: "shadow-orange-400/30", border: "border-orange-400/30" };
+    if (genreLower.includes("adventure")) return { gradient: "from-green-500 to-emerald-500", shadow: "shadow-green-500/30", border: "border-green-500/30" };
+    
+    return { gradient: "from-primary to-primary/70", shadow: "shadow-primary/30", border: "border-primary/30" };
+  };
+
   return (
     <div className="min-h-screen bg-background pt-20 pb-16">
       <div className="container mx-auto px-4">
@@ -158,45 +175,59 @@ const Browse = () => {
                 </div>
               ) : (
                 <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
-                  {animeList.map((anime) => (
-                    <div
-                      key={anime.id}
-                      className="group cursor-pointer"
-                      onClick={() => navigate(`/anime/${anime.id}`)}
-                    >
-                      <div className="relative aspect-[3/4] rounded-xl overflow-hidden mb-2">
-                        <img
-                          src={getAnimeImage(anime)}
-                          alt={anime.title}
-                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                        />
-                        <div className="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
-                        
-                        {/* View Count Badge */}
-                        <div className="absolute top-2 right-2 glass px-2 py-1 rounded-full text-xs flex items-center gap-1">
-                          <Eye className="w-3 h-3" />
-                          <span>{(anime.view_count / 1000).toFixed(1)}k</span>
+                  {animeList.map((anime) => {
+                    const theme = getGenreTheme(anime.genre);
+                    return (
+                      <div
+                        key={anime.id}
+                        className={`group cursor-pointer p-[2px] rounded-xl bg-gradient-to-br ${theme.gradient} transition-all duration-300 hover:shadow-lg hover:${theme.shadow} hover:scale-[1.02]`}
+                        onClick={() => navigate(`/anime/${anime.id}`)}
+                      >
+                        <div className="bg-card rounded-[10px] overflow-hidden h-full">
+                          <div className="relative aspect-[3/4] overflow-hidden">
+                            <img
+                              src={getAnimeImage(anime)}
+                              alt={anime.title}
+                              className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                            />
+                            <div className={`absolute inset-0 bg-gradient-to-t ${theme.gradient} opacity-0 group-hover:opacity-20 transition-opacity`} />
+                            
+                            {/* View Count Badge */}
+                            <div className="absolute top-2 right-2 glass px-2 py-1 rounded-full text-xs flex items-center gap-1">
+                              <Eye className="w-3 h-3" />
+                              <span>{(anime.view_count / 1000).toFixed(1)}k</span>
+                            </div>
+                            
+                            {/* Genre Badge */}
+                            {anime.genre && (
+                              <div className={`absolute bottom-2 left-2 px-2 py-1 rounded-full text-xs font-medium bg-gradient-to-r ${theme.gradient} text-white`}>
+                                {anime.genre}
+                              </div>
+                            )}
+                          </div>
+                          <div className="p-3">
+                            <h3 className="font-medium text-foreground text-sm line-clamp-1">
+                              {anime.title}
+                            </h3>
+                            <div className="flex items-center gap-2 text-xs text-muted-foreground mt-1">
+                              {anime.rating && (
+                                <div className="flex items-center gap-1">
+                                  <Star className={`w-3 h-3 bg-gradient-to-r ${theme.gradient} bg-clip-text`} style={{ color: 'currentColor' }} />
+                                  <span>{anime.rating}</span>
+                                </div>
+                              )}
+                              {anime.episodes && (
+                                <div className="flex items-center gap-1">
+                                  <Film className="w-3 h-3" />
+                                  <span>{anime.episodes} eps</span>
+                                </div>
+                              )}
+                            </div>
+                          </div>
                         </div>
                       </div>
-                      <h3 className="font-medium text-foreground text-sm line-clamp-1">
-                        {anime.title}
-                      </h3>
-                      <div className="flex items-center gap-2 text-xs text-muted-foreground">
-                        {anime.rating && (
-                          <div className="flex items-center gap-1">
-                            <Star className="w-3 h-3 text-primary fill-primary" />
-                            <span>{anime.rating}</span>
-                          </div>
-                        )}
-                        {anime.episodes && (
-                          <div className="flex items-center gap-1">
-                            <Film className="w-3 h-3" />
-                            <span>{anime.episodes} eps</span>
-                          </div>
-                        )}
-                      </div>
-                    </div>
-                  ))}
+                    );
+                  })}
                 </div>
               )}
             </div>
@@ -208,25 +239,35 @@ const Browse = () => {
                   You might also like
                 </h2>
                 <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
-                  {similarAnime.map((anime) => (
-                    <div
-                      key={anime.id}
-                      className="group cursor-pointer"
-                      onClick={() => navigate(`/anime/${anime.id}`)}
-                    >
-                      <div className="relative aspect-[3/4] rounded-xl overflow-hidden mb-2">
-                        <img
-                          src={getAnimeImage(anime)}
-                          alt={anime.title}
-                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                        />
+                  {similarAnime.map((anime) => {
+                    const theme = getGenreTheme(anime.genre);
+                    return (
+                      <div
+                        key={anime.id}
+                        className={`group cursor-pointer p-[2px] rounded-xl bg-gradient-to-br ${theme.gradient} transition-all duration-300 hover:shadow-lg hover:scale-[1.02]`}
+                        onClick={() => navigate(`/anime/${anime.id}`)}
+                      >
+                        <div className="bg-card rounded-[10px] overflow-hidden h-full">
+                          <div className="relative aspect-[3/4] overflow-hidden">
+                            <img
+                              src={getAnimeImage(anime)}
+                              alt={anime.title}
+                              className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                            />
+                            <div className={`absolute inset-0 bg-gradient-to-t ${theme.gradient} opacity-0 group-hover:opacity-20 transition-opacity`} />
+                          </div>
+                          <div className="p-3">
+                            <h3 className="font-medium text-foreground text-sm line-clamp-1">
+                              {anime.title}
+                            </h3>
+                            <p className={`text-xs font-medium bg-gradient-to-r ${theme.gradient} bg-clip-text text-transparent mt-1`}>
+                              {anime.genre}
+                            </p>
+                          </div>
+                        </div>
                       </div>
-                      <h3 className="font-medium text-foreground text-sm line-clamp-1">
-                        {anime.title}
-                      </h3>
-                      <p className="text-xs text-muted-foreground">{anime.genre}</p>
-                    </div>
-                  ))}
+                    );
+                  })}
                 </div>
               </div>
             )}
