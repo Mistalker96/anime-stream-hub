@@ -86,7 +86,7 @@ const AnimeSection = ({ title, subtitle }: AnimeSectionProps) => {
             href="#"
             className="text-primary hover:text-primary/80 transition-colors text-sm font-medium hidden md:block"
           >
-            View All →
+            Xem Tất Cả →
           </a>
         </div>
 

@@ -62,7 +62,7 @@ const Navbar = () => {
               <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
               <input
                 type="text"
-                placeholder="Search anime..."
+                placeholder="Tìm kiếm anime..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 className="bg-secondary/50 border border-border rounded-full pl-10 pr-4 py-2 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/50 w-64 transition-all duration-300"
@@ -88,7 +88,7 @@ const Navbar = () => {
                 <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
                 <input
                   type="text"
-                  placeholder="Search anime..."
+                  placeholder="Tìm kiếm anime..."
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
                   className="w-full bg-secondary/50 border border-border rounded-full pl-10 pr-4 py-2 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/50"
@@ -117,7 +117,7 @@ const Navbar = () => {
                     }}
                   >
                     <Settings className="w-5 h-5 mr-2" />
-                    Profile Settings
+                    Cài Đặt Hồ Sơ
                   </Button>
                   <Button
                     variant="ghost"
@@ -128,7 +128,7 @@ const Navbar = () => {
                     }}
                   >
                     <LogOut className="w-5 h-5 mr-2" />
-                    Sign Out
+                    Đăng Xuất
                   </Button>
                 </>
               ) : (
@@ -141,7 +141,7 @@ const Navbar = () => {
                   }}
                 >
                   <User className="w-5 h-5 mr-2" />
-                  Sign In
+                  Đăng Nhập
                 </Button>
               )}
             </div>

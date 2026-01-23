@@ -75,14 +75,14 @@ const ProfileSettings = () => {
 
     if (error) {
       toast({
-        title: "Error",
-        description: "Failed to save profile. Please try again.",
+        title: "Lỗi",
+        description: "Không thể lưu hồ sơ. Vui lòng thử lại.",
         variant: "destructive",
       });
     } else {
       toast({
-        title: "Success",
-        description: "Profile updated successfully!",
+        title: "Thành Công",
+        description: "Hồ sơ đã được cập nhật!",
       });
     }
     setSaving(false);
@@ -91,8 +91,8 @@ const ProfileSettings = () => {
   const handlePasswordChange = async () => {
     if (passwords.newPassword !== passwords.confirmPassword) {
       toast({
-        title: "Error",
-        description: "Passwords do not match.",
+        title: "Lỗi",
+        description: "Mật khẩu không khớp.",
         variant: "destructive",
       });
       return;
@@ -100,8 +100,8 @@ const ProfileSettings = () => {
 
     if (passwords.newPassword.length < 6) {
       toast({
-        title: "Error",
-        description: "Password must be at least 6 characters.",
+        title: "Lỗi",
+        description: "Mật khẩu phải có ít nhất 6 ký tự.",
         variant: "destructive",
       });
       return;
@@ -114,14 +114,14 @@ const ProfileSettings = () => {
 
     if (error) {
       toast({
-        title: "Error",
+        title: "Lỗi",
         description: error.message,
         variant: "destructive",
       });
     } else {
       toast({
-        title: "Success",
-        description: "Password updated successfully!",
+        title: "Thành Công",
+        description: "Mật khẩu đã được cập nhật!",
       });
       setPasswords({ newPassword: "", confirmPassword: "" });
     }
@@ -134,9 +134,9 @@ const ProfileSettings = () => {
         <Navbar />
         <div className="pt-20 container mx-auto px-4">
           <div className="text-center py-16">
-            <p className="text-muted-foreground mb-4">Sign in to access settings</p>
+            <p className="text-muted-foreground mb-4">Đăng nhập để truy cập cài đặt</p>
             <Button variant="hero" onClick={() => navigate("/auth")}>
-              Sign In
+              Đăng Nhập
             </Button>
           </div>
         </div>
@@ -154,13 +154,13 @@ const ProfileSettings = () => {
             <ArrowLeft className="w-5 h-5" />
           </Button>
           <h1 className="text-3xl font-bold font-space-grotesk">
-            Profile <span className="gradient-text">Settings</span>
+            Cài Đặt <span className="gradient-text">Hồ Sơ</span>
           </h1>
         </div>
 
         {loading ? (
           <div className="text-center py-16">
-            <div className="animate-pulse text-primary text-xl">Loading...</div>
+            <div className="animate-pulse text-primary text-xl">Đang tải...</div>
           </div>
         ) : (
           <div className="max-w-2xl mx-auto space-y-8">
@@ -168,7 +168,7 @@ const ProfileSettings = () => {
             <div className="glass rounded-xl p-6">
               <h2 className="text-xl font-semibold mb-6 flex items-center gap-2">
                 <User className="w-5 h-5 text-primary" />
-                Profile Information
+                Thông Tin Hồ Sơ
               </h2>
               <div className="space-y-4">
                 <div>
@@ -180,24 +180,24 @@ const ProfileSettings = () => {
                     className="bg-muted/50"
                   />
                   <p className="text-xs text-muted-foreground mt-1">
-                    Email cannot be changed
+                    Email không thể thay đổi
                   </p>
                 </div>
                 <div>
-                  <Label htmlFor="displayName">Display Name</Label>
+                  <Label htmlFor="displayName">Tên Hiển Thị</Label>
                   <Input
                     id="displayName"
                     value={profile.display_name || ""}
                     onChange={(e) =>
                       setProfile({ ...profile, display_name: e.target.value })
                     }
-                    placeholder="Enter your display name"
+                    placeholder="Nhập tên hiển thị của bạn"
                   />
                 </div>
                 <div>
                   <Label htmlFor="address" className="flex items-center gap-2">
                     <MapPin className="w-4 h-4" />
-                    Address
+                    Địa Chỉ
                   </Label>
                   <Input
                     id="address"
@@ -205,7 +205,7 @@ const ProfileSettings = () => {
                     onChange={(e) =>
                       setProfile({ ...profile, address: e.target.value })
                     }
-                    placeholder="Enter your address"
+                    placeholder="Nhập địa chỉ của bạn"
                   />
                 </div>
                 <Button
@@ -217,12 +217,12 @@ const ProfileSettings = () => {
                   {saving ? (
                     <>
                       <Loader2 className="w-4 h-4 mr-2 animate-spin" />
-                      Saving...
+                      Đang lưu...
                     </>
                   ) : (
                     <>
                       <Save className="w-4 h-4 mr-2" />
-                      Save Profile
+                      Lưu Hồ Sơ
                     </>
                   )}
                 </Button>
@@ -233,11 +233,11 @@ const ProfileSettings = () => {
             <div className="glass rounded-xl p-6">
               <h2 className="text-xl font-semibold mb-6 flex items-center gap-2">
                 <Lock className="w-5 h-5 text-primary" />
-                Change Password
+                Đổi Mật Khẩu
               </h2>
               <div className="space-y-4">
                 <div>
-                  <Label htmlFor="newPassword">New Password</Label>
+                  <Label htmlFor="newPassword">Mật Khẩu Mới</Label>
                   <Input
                     id="newPassword"
                     type="password"
@@ -245,11 +245,11 @@ const ProfileSettings = () => {
                     onChange={(e) =>
                       setPasswords({ ...passwords, newPassword: e.target.value })
                     }
-                    placeholder="Enter new password"
+                    placeholder="Nhập mật khẩu mới"
                   />
                 </div>
                 <div>
-                  <Label htmlFor="confirmPassword">Confirm Password</Label>
+                  <Label htmlFor="confirmPassword">Xác Nhận Mật Khẩu</Label>
                   <Input
                     id="confirmPassword"
                     type="password"
@@ -260,7 +260,7 @@ const ProfileSettings = () => {
                         confirmPassword: e.target.value,
                       })
                     }
-                    placeholder="Confirm new password"
+                    placeholder="Xác nhận mật khẩu mới"
                   />
                 </div>
                 <Button
@@ -276,12 +276,12 @@ const ProfileSettings = () => {
                   {changingPassword ? (
                     <>
                       <Loader2 className="w-4 h-4 mr-2 animate-spin" />
-                      Updating...
+                      Đang cập nhật...
                     </>
                   ) : (
                     <>
                       <Lock className="w-4 h-4 mr-2" />
-                      Update Password
+                      Cập Nhật Mật Khẩu
                     </>
                   )}
                 </Button>

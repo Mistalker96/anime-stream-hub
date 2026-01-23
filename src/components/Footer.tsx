@@ -2,9 +2,9 @@ import { Github, Twitter, Instagram } from "lucide-react";
 
 const Footer = () => {
   const footerLinks = {
-    browse: ["Popular", "New Releases", "Genres", "Random"],
-    help: ["FAQ", "Contact", "Terms of Service", "Privacy Policy"],
-    community: ["Discord", "Forums", "Blog", "Merchandise"],
+    browse: ["Phổ Biến", "Mới Phát Hành", "Thể Loại", "Ngẫu Nhiên"],
+    help: ["Câu Hỏi Thường Gặp", "Liên Hệ", "Điều Khoản Dịch Vụ", "Chính Sách Bảo Mật"],
+    community: ["Discord", "Diễn Đàn", "Blog", "Hàng Hóa"],
   };
 
   return (
@@ -17,8 +17,8 @@ const Footer = () => {
               AniWatch
             </span>
             <p className="text-muted-foreground mt-4 text-sm leading-relaxed">
-              Your ultimate destination for streaming the best anime from around the world. 
-              Discover, watch, and share your favorite series.
+              Điểm đến tuyệt vời nhất để xem những bộ anime hay nhất từ khắp nơi trên thế giới. 
+              Khám phá, xem và chia sẻ những bộ phim yêu thích của bạn.
             </p>
             <div className="flex items-center gap-4 mt-6">
               <a href="#" className="text-muted-foreground hover:text-foreground transition-colors">
@@ -33,9 +33,8 @@ const Footer = () => {
             </div>
           </div>
 
-          {/* Browse */}
           <div>
-            <h4 className="font-semibold text-foreground mb-4">Browse</h4>
+            <h4 className="font-semibold text-foreground mb-4">Duyệt Xem</h4>
             <ul className="space-y-3">
               {footerLinks.browse.map((link) => (
                 <li key={link}>
@@ -47,9 +46,8 @@ const Footer = () => {
             </ul>
           </div>
 
-          {/* Help */}
           <div>
-            <h4 className="font-semibold text-foreground mb-4">Help</h4>
+            <h4 className="font-semibold text-foreground mb-4">Hỗ Trợ</h4>
             <ul className="space-y-3">
               {footerLinks.help.map((link) => (
                 <li key={link}>
@@ -61,9 +59,8 @@ const Footer = () => {
             </ul>
           </div>
 
-          {/* Community */}
           <div>
-            <h4 className="font-semibold text-foreground mb-4">Community</h4>
+            <h4 className="font-semibold text-foreground mb-4">Cộng Đồng</h4>
             <ul className="space-y-3">
               {footerLinks.community.map((link) => (
                 <li key={link}>
@@ -79,10 +76,10 @@ const Footer = () => {
         {/* Bottom */}
         <div className="border-t border-border pt-8 flex flex-col md:flex-row items-center justify-between gap-4">
           <p className="text-muted-foreground text-sm">
-            © 2024 AniWatch. All rights reserved.
+            © 2024 AniWatch. Bảo lưu mọi quyền.
           </p>
           <p className="text-muted-foreground text-sm">
-            Made with ❤️ for anime fans
+            Được tạo với ❤️ dành cho người hâm mộ anime
           </p>
         </div>
       </div>

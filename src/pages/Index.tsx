@@ -10,13 +10,13 @@ const Index = () => {
       <Navbar />
       <HeroCarousel />
       <AnimeSection 
-        title="Trending Now" 
-        subtitle="Most watched anime this week"
+        title="Đang Thịnh Hành" 
+        subtitle="Anime được xem nhiều nhất tuần này"
       />
       <GenreSection />
       <AnimeSection 
-        title="New Releases" 
-        subtitle="Fresh episodes just dropped"
+        title="Mới Phát Hành" 
+        subtitle="Các tập mới vừa cập nhật"
       />
       <Footer />
     </main>

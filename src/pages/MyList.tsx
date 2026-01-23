@@ -28,10 +28,10 @@ interface AnimeInList {
 type CategoryType = "all" | "plan_to_watch" | "watching" | "dropped";
 
 const categories: { key: CategoryType; label: string }[] = [
-  { key: "all", label: "All" },
-  { key: "plan_to_watch", label: "Plan to Watch" },
-  { key: "watching", label: "Watching" },
-  { key: "dropped", label: "Dropped" },
+  { key: "all", label: "Tất Cả" },
+  { key: "plan_to_watch", label: "Dự Định Xem" },
+  { key: "watching", label: "Đang Xem" },
+  { key: "dropped", label: "Đã Bỏ" },
 ];
 
 // Mock images for display
@@ -121,9 +121,9 @@ const MyList = () => {
             <h1 className="text-3xl font-bold font-space-grotesk">My List</h1>
           </div>
           <div className="text-center py-16">
-            <p className="text-muted-foreground mb-4">Sign in to view your list</p>
+            <p className="text-muted-foreground mb-4">Đăng nhập để xem danh sách của bạn</p>
             <Button variant="hero" onClick={() => navigate("/auth")}>
-              Sign In
+              Đăng Nhập
             </Button>
           </div>
         </div>
@@ -165,20 +165,20 @@ const MyList = () => {
 
         {loading ? (
           <div className="text-center py-16">
-            <div className="animate-pulse text-primary text-xl">Loading...</div>
+            <div className="animate-pulse text-primary text-xl">Đang tải...</div>
           </div>
         ) : filteredList.length === 0 ? (
           <div className="text-center py-16">
             <p className="text-muted-foreground mb-4">
               {activeCategory === "all"
-                ? "Your list is empty"
-                : `No anime in "${categories.find((c) => c.key === activeCategory)?.label}"`}
+                ? "Danh sách của bạn đang trống"
+                : `Không có anime trong "${categories.find((c) => c.key === activeCategory)?.label}"`}
             </p>
             <p className="text-sm text-muted-foreground mb-8">
-              Add anime to your list by clicking "Add to List" on any anime page
+              Thêm anime vào danh sách bằng cách nhấn "Thêm Vào Danh Sách" trên bất kỳ trang anime nào
             </p>
             <Button variant="hero" onClick={() => navigate("/")}>
-              Browse Anime
+              Duyệt Anime
             </Button>
           </div>
         ) : (
@@ -216,7 +216,7 @@ const MyList = () => {
                         className="scale-90 group-hover:scale-100 transition-transform"
                       >
                         <Play className="w-5 h-5 fill-current" />
-                        Watch
+                        Xem
                       </Button>
                     </div>
                   </div>
@@ -224,7 +224,7 @@ const MyList = () => {
                   <div className="flex items-start justify-between gap-2 mb-3">
                     <div className="flex-1">
                       <h3 className="font-semibold text-foreground mb-1 line-clamp-1">
-                        {item.anime?.title || "Unknown Anime"}
+                        {item.anime?.title || "Anime Không Xác Định"}
                       </h3>
                       <div className="flex items-center gap-3 text-sm text-muted-foreground">
                         {item.anime?.rating && (
@@ -236,7 +236,7 @@ const MyList = () => {
                         {item.anime?.episodes && (
                           <div className="flex items-center gap-1">
                             <Film className="w-3 h-3" />
-                            <span>{item.anime.episodes} eps</span>
+                            <span>{item.anime.episodes} tập</span>
                           </div>
                         )}
                         {item.anime?.genre && (
