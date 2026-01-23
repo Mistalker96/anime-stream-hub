@@ -4,12 +4,13 @@ import { supabase } from "@/integrations/supabase/client";
 import { useAuth } from "@/hooks/useAuth";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft, Trash2, Play, Star, Film, FolderPlus } from "lucide-react";
-import anime1 from "@/assets/anime-1.jpg";
-import anime2 from "@/assets/anime-2.jpg";
-import anime3 from "@/assets/anime-3.jpg";
-import anime4 from "@/assets/anime-4.jpg";
-import anime5 from "@/assets/anime-5.jpg";
-import anime6 from "@/assets/anime-6.jpg";
+// AI-generated images matching anime titles
+import dragonsFlame from "@/assets/anime-dragons-flame.jpg";
+import midnightBlade from "@/assets/anime-midnight-blade.jpg";
+import spiritMageAcademy from "@/assets/anime-spirit-mage-academy.jpg";
+import neonGhostProtocol from "@/assets/anime-neon-ghost-protocol.jpg";
+import steelWingZero from "@/assets/anime-steel-wing-zero.jpg";
+import summersEnd from "@/assets/anime-summers-end.jpg";
 
 interface AnimeInList {
   id: string;
@@ -34,14 +35,36 @@ const categories: { key: CategoryType; label: string }[] = [
   { key: "dropped", label: "Đã Bỏ" },
 ];
 
-// Mock images for display
-const mockImages: Record<string, string> = {
-  "1": anime1,
-  "2": anime2,
-  "3": anime3,
-  "4": anime4,
-  "5": anime5,
-  "6": anime6,
+// AI-generated images mapped by title keywords
+const getAnimeImageByTitle = (title: string | undefined): string => {
+  if (!title) return dragonsFlame;
+  
+  const lowerTitle = title.toLowerCase();
+  
+  // Match by keywords in title
+  if (lowerTitle.includes("dragon") || lowerTitle.includes("flame") || lowerTitle.includes("fire")) {
+    return dragonsFlame;
+  }
+  if (lowerTitle.includes("blade") || lowerTitle.includes("midnight") || lowerTitle.includes("sword") || lowerTitle.includes("dark")) {
+    return midnightBlade;
+  }
+  if (lowerTitle.includes("spirit") || lowerTitle.includes("mage") || lowerTitle.includes("magic") || lowerTitle.includes("academy") || lowerTitle.includes("school")) {
+    return spiritMageAcademy;
+  }
+  if (lowerTitle.includes("neon") || lowerTitle.includes("ghost") || lowerTitle.includes("cyber") || lowerTitle.includes("protocol") || lowerTitle.includes("tech")) {
+    return neonGhostProtocol;
+  }
+  if (lowerTitle.includes("steel") || lowerTitle.includes("wing") || lowerTitle.includes("mecha") || lowerTitle.includes("robot") || lowerTitle.includes("zero")) {
+    return steelWingZero;
+  }
+  if (lowerTitle.includes("summer") || lowerTitle.includes("romance") || lowerTitle.includes("love") || lowerTitle.includes("heart") || lowerTitle.includes("end")) {
+    return summersEnd;
+  }
+  
+  // Default fallback - cycle through images based on title hash
+  const hash = title.split('').reduce((acc, char) => acc + char.charCodeAt(0), 0);
+  const images = [dragonsFlame, midnightBlade, spiritMageAcademy, neonGhostProtocol, steelWingZero, summersEnd];
+  return images[hash % images.length];
 };
 
 const MyList = () => {
@@ -191,7 +214,7 @@ const MyList = () => {
                 {/* Background with gradient overlay */}
                 <div className="absolute inset-0">
                   <img
-                    src={item.anime?.thumbnail_url || mockImages[item.anime_id] || anime1}
+                    src={item.anime?.thumbnail_url || getAnimeImageByTitle(item.anime?.title)}
                     alt=""
                     className="w-full h-full object-cover"
                   />
@@ -203,7 +226,7 @@ const MyList = () => {
                 <div className="relative">
                   <div className="aspect-video relative">
                     <img
-                      src={item.anime?.thumbnail_url || mockImages[item.anime_id] || anime1}
+                      src={item.anime?.thumbnail_url || getAnimeImageByTitle(item.anime?.title)}
                       alt={item.anime?.title || "Anime"}
                       className="w-full h-full object-cover rounded-t-xl"
                     />
