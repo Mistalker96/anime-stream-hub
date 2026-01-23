@@ -164,7 +164,7 @@ const HeroCarousel = () => {
           {/* Badge */}
           <div className="inline-flex items-center gap-2 glass rounded-full px-4 py-2 mb-6">
             <span className="w-2 h-2 rounded-full bg-primary animate-pulse" />
-            <span className="text-sm text-muted-foreground">Popular Anime</span>
+            <span className="text-sm text-muted-foreground">Anime Phổ Biến</span>
           </div>
 
           {/* Title */}
@@ -180,7 +180,7 @@ const HeroCarousel = () => {
               <span className="text-foreground font-medium">{slide.rating}</span>
             </div>
             <span>•</span>
-            <span>{slide.episodes}+ Episodes</span>
+            <span>{slide.episodes}+ Tập</span>
             <span>•</span>
             <span>{slide.genres}</span>
             <span>•</span>
@@ -196,7 +196,7 @@ const HeroCarousel = () => {
           <div className="flex items-center gap-4">
             <Button variant="hero" size="xl" onClick={() => navigate(`/watch/${slide.id}?ep=1`)}>
               <Play className="w-5 h-5 fill-current" />
-              Watch Now
+              Xem Ngay
             </Button>
             <Button 
               variant="glass" 
@@ -205,7 +205,7 @@ const HeroCarousel = () => {
               disabled={loading}
             >
               <Plus className={`w-5 h-5 transition-transform ${isInList ? "rotate-45" : ""}`} />
-              {isInList ? "In List" : "Add to List"}
+              {isInList ? "Đã Thêm" : "Thêm Vào Danh Sách"}
             </Button>
           </div>
         </div>

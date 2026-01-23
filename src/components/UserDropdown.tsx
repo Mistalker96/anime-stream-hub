@@ -62,7 +62,7 @@ const UserDropdown = () => {
               className="w-full flex items-center gap-3 px-4 py-2 text-sm text-foreground hover:bg-secondary/50 transition-colors"
             >
               <Settings className="w-4 h-4" />
-              Profile Settings
+              Cài Đặt Hồ Sơ
             </button>
             <button
               onClick={() => {
@@ -72,7 +72,7 @@ const UserDropdown = () => {
               className="w-full flex items-center gap-3 px-4 py-2 text-sm text-destructive hover:bg-destructive/10 transition-colors"
             >
               <LogOut className="w-4 h-4" />
-              Sign Out
+              Đăng Xuất
             </button>
           </div>
         </div>
