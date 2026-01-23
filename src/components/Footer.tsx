@@ -19,7 +19,6 @@ const Footer = () => {
       { label: "Discord", href: "#" },
       { label: "Diễn Đàn", href: "#" },
       { label: "Blog", href: "#" },
-      { label: "Hàng Hóa", href: "#" },
     ],
   };
 
