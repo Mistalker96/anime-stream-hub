@@ -3,12 +3,12 @@ import { Play, Plus, Star, ChevronLeft, ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useNavigate } from "react-router-dom";
 import { useAnimeList } from "@/hooks/useAnimeList";
-import heroImage from "@/assets/hero-anime.jpg";
-import anime1 from "@/assets/anime-1.jpg";
-import anime2 from "@/assets/anime-2.jpg";
-import anime3 from "@/assets/anime-3.jpg";
-import anime4 from "@/assets/anime-4.jpg";
-import anime5 from "@/assets/anime-5.jpg";
+import onePieceBg from "@/assets/one-piece-bg.jpg";
+import attackOnTitanBg from "@/assets/attack-on-titan-bg.jpg";
+import jujutsuKaisenBg from "@/assets/jujutsu-kaisen-bg.jpg";
+import fireForceBg from "@/assets/fire-force-bg.jpg";
+import demonSlayerBg from "@/assets/demon-slayer-bg.jpg";
+import myHeroAcademiaBg from "@/assets/my-hero-academia-bg.jpg";
 
 interface HeroSlide {
   id: string;
@@ -24,10 +24,10 @@ interface HeroSlide {
 
 const slides: HeroSlide[] = [
   {
-    id: "1",
+    id: "11111111-1111-1111-1111-111111111111",
     title: "One",
     subtitle: "Piece",
-    image: heroImage,
+    image: onePieceBg,
     rating: 9.5,
     episodes: 1100,
     genres: "Action, Adventure, Comedy",
@@ -36,10 +36,10 @@ const slides: HeroSlide[] = [
       "Follow Monkey D. Luffy and his pirate crew in their epic adventure to find the legendary One Piece treasure and become the Pirate King. A journey of friendship, dreams, and battles across the Grand Line.",
   },
   {
-    id: "2",
+    id: "22222222-2222-2222-2222-222222222222",
     title: "Attack on",
     subtitle: "Titan",
-    image: anime1,
+    image: attackOnTitanBg,
     rating: 9.4,
     episodes: 94,
     genres: "Action, Drama, Fantasy",
@@ -48,10 +48,10 @@ const slides: HeroSlide[] = [
       "Humanity fights for survival against giant humanoid Titans that devour humans. Eren Yeager and his friends join the military to uncover the truth behind the Titans and reclaim their world.",
   },
   {
-    id: "3",
+    id: "33333333-3333-3333-3333-333333333333",
     title: "Jujutsu",
     subtitle: "Kaisen",
-    image: anime2,
+    image: jujutsuKaisenBg,
     rating: 9.2,
     episodes: 48,
     genres: "Action, Supernatural, School",
@@ -60,10 +60,10 @@ const slides: HeroSlide[] = [
       "Yuji Itadori joins a secret organization of Jujutsu Sorcerers to eliminate a powerful Curse. Navigate the dark world of curses, sorcery, and the battle between good and evil.",
   },
   {
-    id: "4",
+    id: "44444444-4444-4444-4444-444444444444",
     title: "Fire",
     subtitle: "Force",
-    image: anime3,
+    image: fireForceBg,
     rating: 8.8,
     episodes: 48,
     genres: "Action, Supernatural, Sci-Fi",
@@ -72,10 +72,10 @@ const slides: HeroSlide[] = [
       "In a world where humans spontaneously combust, Special Fire Force Company 8 fights against Infernals. Shinra Kusakabe seeks the truth about his family and the source of these flames.",
   },
   {
-    id: "5",
+    id: "55555555-5555-5555-5555-555555555555",
     title: "Demon",
     subtitle: "Slayer",
-    image: anime4,
+    image: demonSlayerBg,
     rating: 9.3,
     episodes: 55,
     genres: "Action, Supernatural, Historical",
@@ -84,10 +84,10 @@ const slides: HeroSlide[] = [
       "Tanjiro Kamado becomes a demon slayer to avenge his family and cure his sister Nezuko. Experience breathtaking animation and emotional storytelling in this tale of determination.",
   },
   {
-    id: "6",
+    id: "66666666-6666-6666-6666-666666666666",
     title: "My Hero",
     subtitle: "Academia",
-    image: anime5,
+    image: myHeroAcademiaBg,
     rating: 8.9,
     episodes: 138,
     genres: "Action, Comedy, School",
