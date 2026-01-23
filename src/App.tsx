@@ -10,6 +10,10 @@ import Watch from "./pages/Watch";
 import MyList from "./pages/MyList";
 import Browse from "./pages/Browse";
 import ProfileSettings from "./pages/ProfileSettings";
+import FAQ from "./pages/FAQ";
+import Contact from "./pages/Contact";
+import Terms from "./pages/Terms";
+import Privacy from "./pages/Privacy";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -28,6 +32,10 @@ const App = () => (
           <Route path="/my-list" element={<MyList />} />
           <Route path="/browse" element={<Browse />} />
           <Route path="/settings" element={<ProfileSettings />} />
+          <Route path="/faq" element={<FAQ />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/terms" element={<Terms />} />
+          <Route path="/privacy" element={<Privacy />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>

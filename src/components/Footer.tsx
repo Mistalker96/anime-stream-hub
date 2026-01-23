@@ -1,10 +1,26 @@
 import { Github, Twitter, Instagram } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const Footer = () => {
   const footerLinks = {
-    browse: ["Phổ Biến", "Mới Phát Hành", "Thể Loại", "Ngẫu Nhiên"],
-    help: ["Câu Hỏi Thường Gặp", "Liên Hệ", "Điều Khoản Dịch Vụ", "Chính Sách Bảo Mật"],
-    community: ["Discord", "Diễn Đàn", "Blog", "Hàng Hóa"],
+    browse: [
+      { label: "Phổ Biến", href: "/browse" },
+      { label: "Mới Phát Hành", href: "/browse" },
+      { label: "Thể Loại", href: "/browse" },
+      { label: "Ngẫu Nhiên", href: "/browse" },
+    ],
+    help: [
+      { label: "Câu Hỏi Thường Gặp", href: "/faq" },
+      { label: "Liên Hệ", href: "/contact" },
+      { label: "Điều Khoản Dịch Vụ", href: "/terms" },
+      { label: "Chính Sách Bảo Mật", href: "/privacy" },
+    ],
+    community: [
+      { label: "Discord", href: "#" },
+      { label: "Diễn Đàn", href: "#" },
+      { label: "Blog", href: "#" },
+      { label: "Hàng Hóa", href: "#" },
+    ],
   };
 
   return (
@@ -13,9 +29,9 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
           {/* Brand */}
           <div>
-            <span className="text-2xl font-bold font-space-grotesk gradient-text">
+            <Link to="/" className="text-2xl font-bold font-space-grotesk gradient-text">
               AniWatch
-            </span>
+            </Link>
             <p className="text-muted-foreground mt-4 text-sm leading-relaxed">
               Điểm đến tuyệt vời nhất để xem những bộ anime hay nhất từ khắp nơi trên thế giới. 
               Khám phá, xem và chia sẻ những bộ phim yêu thích của bạn.
@@ -37,10 +53,10 @@ const Footer = () => {
             <h4 className="font-semibold text-foreground mb-4">Duyệt Xem</h4>
             <ul className="space-y-3">
               {footerLinks.browse.map((link) => (
-                <li key={link}>
-                  <a href="#" className="text-muted-foreground hover:text-foreground text-sm transition-colors">
-                    {link}
-                  </a>
+                <li key={link.label}>
+                  <Link to={link.href} className="text-muted-foreground hover:text-foreground text-sm transition-colors">
+                    {link.label}
+                  </Link>
                 </li>
               ))}
             </ul>
@@ -50,10 +66,10 @@ const Footer = () => {
             <h4 className="font-semibold text-foreground mb-4">Hỗ Trợ</h4>
             <ul className="space-y-3">
               {footerLinks.help.map((link) => (
-                <li key={link}>
-                  <a href="#" className="text-muted-foreground hover:text-foreground text-sm transition-colors">
-                    {link}
-                  </a>
+                <li key={link.label}>
+                  <Link to={link.href} className="text-muted-foreground hover:text-foreground text-sm transition-colors">
+                    {link.label}
+                  </Link>
                 </li>
               ))}
             </ul>
@@ -63,9 +79,9 @@ const Footer = () => {
             <h4 className="font-semibold text-foreground mb-4">Cộng Đồng</h4>
             <ul className="space-y-3">
               {footerLinks.community.map((link) => (
-                <li key={link}>
-                  <a href="#" className="text-muted-foreground hover:text-foreground text-sm transition-colors">
-                    {link}
+                <li key={link.label}>
+                  <a href={link.href} className="text-muted-foreground hover:text-foreground text-sm transition-colors">
+                    {link.label}
                   </a>
                 </li>
               ))}
@@ -76,7 +92,7 @@ const Footer = () => {
         {/* Bottom */}
         <div className="border-t border-border pt-8 flex flex-col md:flex-row items-center justify-between gap-4">
           <p className="text-muted-foreground text-sm">
-            © 2024 AniWatch. Bảo lưu mọi quyền.
+            © 2026 AniWatch. Bảo lưu mọi quyền.
           </p>
           <p className="text-muted-foreground text-sm">
             Được tạo với ❤️ dành cho người hâm mộ anime
