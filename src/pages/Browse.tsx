@@ -4,12 +4,12 @@ import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft, Star, Film, Eye } from "lucide-react";
 import { Sword, Sparkles, Ghost, Rocket, Heart, Zap, Skull, Laugh } from "lucide-react";
-import anime1 from "@/assets/anime-1.jpg";
-import anime2 from "@/assets/anime-2.jpg";
-import anime3 from "@/assets/anime-3.jpg";
-import anime4 from "@/assets/anime-4.jpg";
-import anime5 from "@/assets/anime-5.jpg";
-import anime6 from "@/assets/anime-6.jpg";
+import dragonsFlame from "@/assets/anime-dragons-flame.jpg";
+import midnightBlade from "@/assets/anime-midnight-blade.jpg";
+import spiritMageAcademy from "@/assets/anime-spirit-mage-academy.jpg";
+import neonGhostProtocol from "@/assets/anime-neon-ghost-protocol.jpg";
+import steelWingZero from "@/assets/anime-steel-wing-zero.jpg";
+import summersEnd from "@/assets/anime-summers-end.jpg";
 
 interface Anime {
   id: string;
@@ -35,12 +35,12 @@ const genres = [
 
 // Mock data
 const mockAnime = [
-  { id: "1", title: "Dragon's Flame", image: anime1, rating: 9.1, episodes: 24, genre: "Action", view_count: 15420 },
-  { id: "2", title: "Midnight Blade", image: anime2, rating: 8.9, episodes: 12, genre: "Fantasy", view_count: 12350 },
-  { id: "3", title: "Spirit Mage Academy", image: anime3, rating: 8.7, episodes: 48, genre: "Adventure", view_count: 28900 },
-  { id: "4", title: "Neon Ghost Protocol", image: anime4, rating: 9.3, episodes: 13, genre: "Sci-Fi", view_count: 45200 },
-  { id: "5", title: "Steel Wing Zero", image: anime5, rating: 8.8, episodes: 50, genre: "Mecha", view_count: 8700 },
-  { id: "6", title: "Summer's End", image: anime6, rating: 9.0, episodes: 12, genre: "Romance", view_count: 32100 },
+  { id: "1", title: "Dragon's Flame", image: dragonsFlame, rating: 9.1, episodes: 24, genre: "Action", view_count: 15420 },
+  { id: "2", title: "Midnight Blade", image: midnightBlade, rating: 8.9, episodes: 12, genre: "Fantasy", view_count: 12350 },
+  { id: "3", title: "Spirit Mage Academy", image: spiritMageAcademy, rating: 8.7, episodes: 48, genre: "Adventure", view_count: 28900 },
+  { id: "4", title: "Neon Ghost Protocol", image: neonGhostProtocol, rating: 9.3, episodes: 13, genre: "Sci-Fi", view_count: 45200 },
+  { id: "5", title: "Steel Wing Zero", image: steelWingZero, rating: 8.8, episodes: 50, genre: "Mecha", view_count: 8700 },
+  { id: "6", title: "Summer's End", image: summersEnd, rating: 9.0, episodes: 12, genre: "Romance", view_count: 32100 },
 ];
 
 const Browse = () => {
@@ -98,7 +98,7 @@ const Browse = () => {
   const getAnimeImage = (anime: Anime) => {
     if (anime.thumbnail_url) return anime.thumbnail_url;
     const mockItem = mockAnime.find(m => m.id === anime.id);
-    return mockItem?.image || anime1;
+    return mockItem?.image || dragonsFlame;
   };
 
   const getGenreTheme = (genre: string | null) => {
