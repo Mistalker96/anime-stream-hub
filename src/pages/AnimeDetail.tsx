@@ -12,6 +12,8 @@ import anime3 from "@/assets/anime-3.jpg";
 import anime4 from "@/assets/anime-4.jpg";
 import anime5 from "@/assets/anime-5.jpg";
 import anime6 from "@/assets/anime-6.jpg";
+// AI-generated background for Jujutsu Kaisen
+import gojoSatoruBg from "@/assets/gojo-satoru-bg.jpg";
 
 interface AnimeData {
   id: string;
@@ -180,7 +182,11 @@ const AnimeDetail = () => {
     );
   }
 
-  const displayImage = (anime as any).image || anime.thumbnail_url || anime1;
+  // Use Gojo Satoru background for Jujutsu Kaisen
+  const isJujutsuKaisen = anime.title?.toLowerCase().includes('jujutsu');
+  const displayImage = isJujutsuKaisen 
+    ? gojoSatoruBg 
+    : (anime as any).image || anime.thumbnail_url || anime1;
 
   return (
     <div className="min-h-screen bg-background">
