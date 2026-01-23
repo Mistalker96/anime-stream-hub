@@ -9,6 +9,7 @@ import AnimeDetail from "./pages/AnimeDetail";
 import Watch from "./pages/Watch";
 import MyList from "./pages/MyList";
 import Browse from "./pages/Browse";
+import ProfileSettings from "./pages/ProfileSettings";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -26,6 +27,7 @@ const App = () => (
           <Route path="/watch/:id" element={<Watch />} />
           <Route path="/my-list" element={<MyList />} />
           <Route path="/browse" element={<Browse />} />
+          <Route path="/settings" element={<ProfileSettings />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>

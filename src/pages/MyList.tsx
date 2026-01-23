@@ -186,26 +186,41 @@ const MyList = () => {
             {filteredList.map((item) => (
               <div
                 key={item.id}
-                className="glass rounded-xl overflow-hidden group"
+                className="relative rounded-xl overflow-hidden group border border-border/50"
               >
-                <div className="relative aspect-video">
+                {/* Background with gradient overlay */}
+                <div className="absolute inset-0">
                   <img
                     src={item.anime?.thumbnail_url || mockImages[item.anime_id] || anime1}
-                    alt={item.anime?.title || "Anime"}
+                    alt=""
                     className="w-full h-full object-cover"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                    <Button
-                      variant="hero"
-                      size="lg"
-                      onClick={() => navigate(`/watch/${item.anime_id}?ep=1`)}
-                    >
-                      <Play className="w-5 h-5 fill-current" />
-                      Watch
-                    </Button>
-                  </div>
+                  <div className="absolute inset-0 bg-gradient-to-t from-background via-background/90 to-background/40" />
+                  <div className="absolute inset-0 bg-gradient-to-r from-primary/5 via-transparent to-accent/5" />
                 </div>
-                <div className="p-4">
+                
+                {/* Content */}
+                <div className="relative">
+                  <div className="aspect-video relative">
+                    <img
+                      src={item.anime?.thumbnail_url || mockImages[item.anime_id] || anime1}
+                      alt={item.anime?.title || "Anime"}
+                      className="w-full h-full object-cover rounded-t-xl"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-background/95 via-background/30 to-transparent" />
+                    <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-all duration-300 flex items-center justify-center bg-background/50 backdrop-blur-sm">
+                      <Button
+                        variant="hero"
+                        size="lg"
+                        onClick={() => navigate(`/watch/${item.anime_id}?ep=1`)}
+                        className="scale-90 group-hover:scale-100 transition-transform"
+                      >
+                        <Play className="w-5 h-5 fill-current" />
+                        Watch
+                      </Button>
+                    </div>
+                  </div>
+                  <div className="p-4 relative">
                   <div className="flex items-start justify-between gap-2 mb-3">
                     <div className="flex-1">
                       <h3 className="font-semibold text-foreground mb-1 line-clamp-1">
@@ -239,23 +254,24 @@ const MyList = () => {
                     </Button>
                   </div>
 
-                  {/* Category Selector */}
-                  <div className="flex gap-1 flex-wrap">
-                    {categories
-                      .filter((c) => c.key !== "all")
-                      .map((cat) => (
-                        <button
-                          key={cat.key}
-                          onClick={() => handleCategoryChange(item.id, cat.key)}
-                          className={`text-xs px-2 py-1 rounded-full transition-colors ${
-                            item.category === cat.key
-                              ? "bg-primary text-primary-foreground"
-                              : "bg-muted text-muted-foreground hover:bg-muted/80"
-                          }`}
-                        >
-                          {cat.label}
-                        </button>
-                      ))}
+                    {/* Category Selector */}
+                    <div className="flex gap-1 flex-wrap">
+                      {categories
+                        .filter((c) => c.key !== "all")
+                        .map((cat) => (
+                          <button
+                            key={cat.key}
+                            onClick={() => handleCategoryChange(item.id, cat.key)}
+                            className={`text-xs px-2 py-1 rounded-full transition-colors backdrop-blur-sm ${
+                              item.category === cat.key
+                                ? "bg-primary text-primary-foreground shadow-lg shadow-primary/25"
+                                : "bg-muted/80 text-muted-foreground hover:bg-muted"
+                            }`}
+                          >
+                            {cat.label}
+                          </button>
+                        ))}
+                    </div>
                   </div>
                 </div>
               </div>
