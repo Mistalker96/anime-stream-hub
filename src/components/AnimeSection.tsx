@@ -5,6 +5,8 @@ import anime3 from "@/assets/anime-3.jpg";
 import anime4 from "@/assets/anime-4.jpg";
 import anime5 from "@/assets/anime-5.jpg";
 import anime6 from "@/assets/anime-6.jpg";
+import soloLevelingBg from "@/assets/solo-leveling-bg.jpg";
+import jujutsuKaisenBg from "@/assets/jujutsu-kaisen-bg.jpg";
 
 interface AnimeSectionProps {
   title: string;
@@ -13,13 +15,31 @@ interface AnimeSectionProps {
 
 const animeData = [
   { 
+    id: "ab19eaf5-8457-4c5d-8556-4bda30f98e74",
+    title: "Solo Leveling", 
+    image: soloLevelingBg, 
+    rating: 9.6, 
+    episodes: 12, 
+    genre: "Action",
+    previewVideo: "/videos/solo-leveling-ep1.mp4"
+  },
+  { 
+    id: "33333333-3333-3333-3333-333333333333",
+    title: "Jujutsu Kaisen", 
+    image: jujutsuKaisenBg, 
+    rating: 9.2, 
+    episodes: 48, 
+    genre: "Supernatural",
+    previewVideo: "/videos/jujutsu-kaisen-ep1.mp4"
+  },
+  { 
     id: "1",
     title: "Dragon's Flame", 
     image: anime1, 
     rating: 9.1, 
     episodes: 24, 
     genre: "Action",
-    previewVideo: "" // Add preview video URL here
+    previewVideo: ""
   },
   { 
     id: "2",

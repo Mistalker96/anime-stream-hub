@@ -9,6 +9,7 @@ import jujutsuKaisenBg from "@/assets/jujutsu-kaisen-bg.jpg";
 import fireForceBg from "@/assets/fire-force-bg.jpg";
 import demonSlayerBg from "@/assets/demon-slayer-bg.jpg";
 import myHeroAcademiaBg from "@/assets/my-hero-academia-bg.jpg";
+import soloLevelingBg from "@/assets/solo-leveling-bg.jpg";
 
 interface HeroSlide {
   id: string;
@@ -23,6 +24,30 @@ interface HeroSlide {
 }
 
 const slides: HeroSlide[] = [
+  {
+    id: "ab19eaf5-8457-4c5d-8556-4bda30f98e74",
+    title: "Solo",
+    subtitle: "Leveling",
+    image: soloLevelingBg,
+    rating: 9.6,
+    episodes: 12,
+    genres: "Action, Fantasy, Adventure",
+    year: 2024,
+    description:
+      "Sung Jinwoo, thợ săn yếu nhất, đã đạt được sức mạnh bí ẩn cho phép anh ta nâng cấp vô hạn. Hành trình từ kẻ yếu trở thành thợ săn mạnh nhất bắt đầu.",
+  },
+  {
+    id: "33333333-3333-3333-3333-333333333333",
+    title: "Jujutsu",
+    subtitle: "Kaisen",
+    image: jujutsuKaisenBg,
+    rating: 9.2,
+    episodes: 48,
+    genres: "Action, Supernatural, School",
+    year: 2020,
+    description:
+      "Yuji Itadori joins a secret organization of Jujutsu Sorcerers to eliminate a powerful Curse. Navigate the dark world of curses, sorcery, and the battle between good and evil.",
+  },
   {
     id: "11111111-1111-1111-1111-111111111111",
     title: "One",
@@ -46,18 +71,6 @@ const slides: HeroSlide[] = [
     year: 2013,
     description:
       "Humanity fights for survival against giant humanoid Titans that devour humans. Eren Yeager and his friends join the military to uncover the truth behind the Titans and reclaim their world.",
-  },
-  {
-    id: "33333333-3333-3333-3333-333333333333",
-    title: "Jujutsu",
-    subtitle: "Kaisen",
-    image: jujutsuKaisenBg,
-    rating: 9.2,
-    episodes: 48,
-    genres: "Action, Supernatural, School",
-    year: 2020,
-    description:
-      "Yuji Itadori joins a secret organization of Jujutsu Sorcerers to eliminate a powerful Curse. Navigate the dark world of curses, sorcery, and the battle between good and evil.",
   },
   {
     id: "44444444-4444-4444-4444-444444444444",
