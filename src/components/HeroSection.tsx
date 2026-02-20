@@ -56,11 +56,11 @@ const HeroSection = () => {
           <div className="flex items-center gap-4">
             <Button variant="hero" size="xl">
               <Play className="w-5 h-5 fill-current" />
-              Watch Now
+              Xem Ngay
             </Button>
             <Button variant="glass" size="xl">
               <Plus className="w-5 h-5" />
-              Add to List
+              Thêm Vào DS
             </Button>
           </div>
         </div>
