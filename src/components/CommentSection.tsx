@@ -48,8 +48,8 @@ const CommentSection = ({ animeId }: CommentSectionProps) => {
     e.preventDefault();
     if (!user) {
       toast({
-        title: "Sign in required",
-        description: "Please sign in to leave a comment.",
+        title: "Cần đăng nhập",
+        description: "Vui lòng đăng nhập để bình luận.",
         variant: "destructive",
       });
       return;
@@ -92,8 +92,8 @@ const CommentSection = ({ animeId }: CommentSectionProps) => {
 
     if (!error) {
       toast({
-        title: "Deleted",
-        description: "Comment deleted successfully.",
+        title: "Đã xóa",
+        description: "Bình luận đã được xóa.",
       });
       fetchComments();
     }
@@ -108,7 +108,7 @@ const CommentSection = ({ animeId }: CommentSectionProps) => {
       {/* Comment Form */}
       <form onSubmit={handleSubmit} className="glass rounded-xl p-4 space-y-4">
         <div className="flex items-center gap-2 mb-2">
-          <span className="text-sm text-muted-foreground">Your rating:</span>
+          <span className="text-sm text-muted-foreground">Đánh giá của bạn:</span>
           <div className="flex items-center gap-1">
             {[1, 2, 3, 4, 5].map((star) => (
               <button
@@ -130,7 +130,7 @@ const CommentSection = ({ animeId }: CommentSectionProps) => {
         </div>
 
         <Textarea
-          placeholder={user ? "Share your thoughts..." : "Sign in to leave a comment"}
+          placeholder={user ? "Chia sẻ suy nghĩ của bạn..." : "Đăng nhập để bình luận"}
           value={newComment}
           onChange={(e) => setNewComment(e.target.value)}
           className="bg-secondary/50 border-border resize-none"
@@ -145,7 +145,7 @@ const CommentSection = ({ animeId }: CommentSectionProps) => {
             disabled={!user || loading || !newComment.trim()}
           >
             <Send className="w-4 h-4 mr-2" />
-            {loading ? "Posting..." : "Post Comment"}
+            {loading ? "Đang gửi..." : "Gửi Bình Luận"}
           </Button>
         </div>
       </form>

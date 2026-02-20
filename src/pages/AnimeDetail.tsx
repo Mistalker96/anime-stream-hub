@@ -34,7 +34,7 @@ const mockAnimeData: Record<string, AnimeData & { image: string }> = {
   "1": {
     id: "1",
     title: "Dragon's Flame",
-    description: "Ancient dragons awaken from their slumber, and only those with the flame within can stand against the coming storm. Follow the journey of a young warrior who discovers they possess the legendary Dragon's Flame, a power that could either save or destroy the world. As dark forces gather, alliances are forged and broken, and the fate of all living things hangs in the balance.",
+    description: "Những con rồng cổ đại thức giấc từ giấc ngủ dài, và chỉ những ai mang ngọn lửa bên trong mới có thể đứng vững trước cơn bão sắp đến. Hãy theo dõi hành trình của một chiến binh trẻ phát hiện ra mình sở hữu Ngọn Lửa Rồng huyền thoại, sức mạnh có thể cứu rỗi hoặc hủy diệt thế giới.",
     rating: 9.1,
     episodes: 24,
     genre: "Action, Adventure, Fantasy",
@@ -46,7 +46,7 @@ const mockAnimeData: Record<string, AnimeData & { image: string }> = {
   "2": {
     id: "2",
     title: "Midnight Blade",
-    description: "Under the pale moonlight, a lone swordsman walks the path of vengeance. His blade cuts through darkness, seeking the truth hidden in the shadows of the night.",
+    description: "Dưới ánh trăng nhạt, một kiếm sĩ cô độc bước trên con đường báo thù. Lưỡi kiếm của anh chém xuyên bóng tối, tìm kiếm sự thật ẩn giấu trong bóng đêm.",
     rating: 8.9,
     episodes: 12,
     genre: "Fantasy, Drama, Action",
@@ -58,7 +58,7 @@ const mockAnimeData: Record<string, AnimeData & { image: string }> = {
   "3": {
     id: "3",
     title: "Spirit Mage Academy",
-    description: "At the most prestigious academy for spirit wielders, young students discover their powers and forge bonds that will shape the future of the magical realm.",
+    description: "Tại học viện danh giá nhất dành cho những người điều khiển linh hồn, các học sinh trẻ khám phá sức mạnh của mình và tạo nên những mối quan hệ sẽ định hình tương lai của vương quốc phép thuật.",
     rating: 8.7,
     episodes: 48,
     genre: "Adventure, School, Fantasy",
@@ -70,7 +70,7 @@ const mockAnimeData: Record<string, AnimeData & { image: string }> = {
   "4": {
     id: "4",
     title: "Neon Ghost Protocol",
-    description: "In a cyberpunk future where consciousness can be digitized, a team of elite hackers discovers a conspiracy that threatens both the digital and physical worlds.",
+    description: "Trong một tương lai cyberpunk nơi ý thức có thể được số hóa, một đội hacker tinh nhuệ phát hiện ra âm mưu đe dọa cả thế giới kỹ thuật số và vật lý.",
     rating: 9.3,
     episodes: 13,
     genre: "Sci-Fi, Thriller, Action",
@@ -82,7 +82,7 @@ const mockAnimeData: Record<string, AnimeData & { image: string }> = {
   "5": {
     id: "5",
     title: "Steel Wing Zero",
-    description: "Giant mechanical warriors clash in a war that spans galaxies. Young pilot Rei inherits the legendary Steel Wing Zero, the most powerful mecha ever created.",
+    description: "Những chiến binh cơ khí khổng lồ đụng độ trong cuộc chiến xuyên thiên hà. Phi công trẻ Rei thừa kế Steel Wing Zero huyền thoại, mecha mạnh nhất từng được tạo ra.",
     rating: 8.8,
     episodes: 50,
     genre: "Mecha, Sci-Fi, Action",
@@ -94,7 +94,7 @@ const mockAnimeData: Record<string, AnimeData & { image: string }> = {
   "6": {
     id: "6",
     title: "Summer's End",
-    description: "A heartfelt story about a group of friends spending their last summer together before adulthood takes them on separate paths.",
+    description: "Câu chuyện đầy cảm xúc về một nhóm bạn trải qua mùa hè cuối cùng bên nhau trước khi cuộc sống trưởng thành đưa họ đi những con đường riêng.",
     rating: 9.0,
     episodes: 12,
     genre: "Slice of Life, Drama, Romance",
@@ -165,7 +165,7 @@ const AnimeDetail = () => {
   if (loading) {
     return (
       <div className="min-h-screen bg-background flex items-center justify-center">
-        <div className="animate-pulse text-primary text-xl">Loading...</div>
+        <div className="animate-pulse text-primary text-xl">Đang tải...</div>
       </div>
     );
   }
@@ -173,8 +173,8 @@ const AnimeDetail = () => {
   if (!anime) {
     return (
       <div className="min-h-screen bg-background flex flex-col items-center justify-center">
-        <p className="text-muted-foreground text-xl mb-4">Anime not found</p>
-        <Button onClick={() => navigate("/")}>Go Home</Button>
+        <p className="text-muted-foreground text-xl mb-4">Không tìm thấy anime</p>
+        <Button onClick={() => navigate("/")}>Về Trang Chủ</Button>
       </div>
     );
   }
@@ -220,7 +220,7 @@ const AnimeDetail = () => {
             {anime.episodes && (
               <div className="flex items-center gap-1">
                 <Film className="w-4 h-4" />
-                <span>{anime.episodes} Episodes</span>
+                <span>{anime.episodes} Tập</span>
               </div>
             )}
             {anime.genre && <span>{anime.genre}</span>}
@@ -232,18 +232,18 @@ const AnimeDetail = () => {
             )}
             <div className="flex items-center gap-1">
               <Eye className="w-4 h-4" />
-              <span>{((anime.view_count || 0) / 1000).toFixed(1)}k views</span>
+              <span>{((anime.view_count || 0) / 1000).toFixed(1)}k lượt xem</span>
             </div>
           </div>
 
           <p className="text-muted-foreground text-lg mb-8 leading-relaxed">
-            {anime.description || "No description available."}
+            {anime.description || "Chưa có mô tả."}
           </p>
 
           <div className="flex items-center gap-4 mb-12">
             <Button variant="hero" size="xl" onClick={handleWatchNow}>
               <Play className="w-5 h-5 fill-current" />
-              Watch Now
+              Xem Ngay
             </Button>
             <Button 
               variant={isInList ? "secondary" : "glass"} 
@@ -254,12 +254,12 @@ const AnimeDetail = () => {
               {isInList ? (
                 <>
                   <Check className="w-5 h-5" />
-                  In My List
+                  Đã Thêm
                 </>
               ) : (
                 <>
                   <Plus className="w-5 h-5" />
-                  Add to List
+                  Thêm Vào DS
                 </>
               )}
             </Button>
