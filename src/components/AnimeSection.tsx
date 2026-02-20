@@ -1,12 +1,5 @@
 import AnimeCardWithPreview from "@/components/AnimeCardWithPreview";
-import anime1 from "@/assets/anime-1.jpg";
-import anime2 from "@/assets/anime-2.jpg";
-import anime3 from "@/assets/anime-3.jpg";
-import anime4 from "@/assets/anime-4.jpg";
-import anime5 from "@/assets/anime-5.jpg";
-import anime6 from "@/assets/anime-6.jpg";
-import soloLevelingBg from "@/assets/solo-leveling-bg.jpg";
-import jujutsuKaisenBg from "@/assets/jujutsu-kaisen-bg.jpg";
+import { animeImageMap } from "@/lib/animeImageMap";
 
 interface AnimeSectionProps {
   title: string;
@@ -17,7 +10,7 @@ const animeData = [
   { 
     id: "ab19eaf5-8457-4c5d-8556-4bda30f98e74",
     title: "Solo Leveling", 
-    image: soloLevelingBg, 
+    image: animeImageMap["ab19eaf5-8457-4c5d-8556-4bda30f98e74"], 
     rating: 9.6, 
     episodes: 12, 
     genre: "Action",
@@ -26,64 +19,64 @@ const animeData = [
   { 
     id: "33333333-3333-3333-3333-333333333333",
     title: "Jujutsu Kaisen", 
-    image: jujutsuKaisenBg, 
+    image: animeImageMap["33333333-3333-3333-3333-333333333333"], 
     rating: 9.2, 
     episodes: 48, 
     genre: "Supernatural",
     previewVideo: "/videos/jujutsu-kaisen-ep1.mp4"
   },
   { 
-    id: "1",
-    title: "Dragon's Flame", 
-    image: anime1, 
-    rating: 9.1, 
-    episodes: 24, 
-    genre: "Action",
+    id: "dddd1111-1111-1111-1111-111111111111",
+    title: "Death Note", 
+    image: animeImageMap["dddd1111-1111-1111-1111-111111111111"], 
+    rating: 9.4, 
+    episodes: 37, 
+    genre: "Thriller",
     previewVideo: ""
   },
   { 
-    id: "2",
-    title: "Midnight Blade", 
-    image: anime2, 
-    rating: 8.9, 
-    episodes: 12, 
-    genre: "Fantasy",
-    previewVideo: ""
-  },
-  { 
-    id: "3",
-    title: "Spirit Mage Academy", 
-    image: anime3, 
-    rating: 8.7, 
-    episodes: 48, 
+    id: "ffff1111-1111-1111-1111-111111111111",
+    title: "Hunter x Hunter", 
+    image: animeImageMap["ffff1111-1111-1111-1111-111111111111"], 
+    rating: 9.5, 
+    episodes: 148, 
     genre: "Adventure",
     previewVideo: ""
   },
   { 
-    id: "4",
-    title: "Neon Ghost Protocol", 
-    image: anime4, 
-    rating: 9.3, 
-    episodes: 13, 
-    genre: "Sci-Fi",
+    id: "bbbb1111-1111-1111-1111-111111111111",
+    title: "Tokyo Ghoul", 
+    image: animeImageMap["bbbb1111-1111-1111-1111-111111111111"], 
+    rating: 8.7, 
+    episodes: 48, 
+    genre: "Horror",
     previewVideo: ""
   },
   { 
-    id: "5",
-    title: "Steel Wing Zero", 
-    image: anime5, 
-    rating: 8.8, 
-    episodes: 50, 
-    genre: "Mecha",
+    id: "cccc1111-1111-1111-1111-111111111111",
+    title: "Your Lie in April", 
+    image: animeImageMap["cccc1111-1111-1111-1111-111111111111"], 
+    rating: 9.2, 
+    episodes: 22, 
+    genre: "Romance",
     previewVideo: ""
   },
   { 
-    id: "6",
-    title: "Summer's End", 
-    image: anime6, 
+    id: "aaaa1111-1111-1111-1111-111111111111",
+    title: "Mushoku Tensei", 
+    image: animeImageMap["aaaa1111-1111-1111-1111-111111111111"], 
     rating: 9.0, 
-    episodes: 12, 
-    genre: "Slice of Life",
+    episodes: 23, 
+    genre: "Fantasy",
+    previewVideo: ""
+  },
+  { 
+    id: "eeee1111-1111-1111-1111-111111111111",
+    title: "Gintama", 
+    image: animeImageMap["eeee1111-1111-1111-1111-111111111111"], 
+    rating: 9.3, 
+    episodes: 367, 
+    genre: "Comedy",
     previewVideo: ""
   },
 ];
