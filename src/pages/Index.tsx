@@ -1,4 +1,3 @@
-import Navbar from "@/components/Navbar";
 import HeroCarousel from "@/components/HeroCarousel";
 import AnimeSection from "@/components/AnimeSection";
 import GenreSection from "@/components/GenreSection";
@@ -7,7 +6,6 @@ import Footer from "@/components/Footer";
 const Index = () => {
   return (
     <main className="min-h-screen bg-background">
-      <Navbar />
       <HeroCarousel />
       <AnimeSection 
         title="Đang Thịnh Hành" 
