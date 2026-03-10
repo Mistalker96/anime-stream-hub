@@ -12,6 +12,14 @@ const Navbar = () => {
   const navigate = useNavigate();
   const { user, signOut } = useAuth();
 
+  const handleSearch = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (searchQuery.trim()) {
+      navigate(`/browse?search=${encodeURIComponent(searchQuery.trim())}`);
+      setSearchQuery("");
+    }
+  };
+
   const navLinks = [
     { label: "Home", href: "/" },
     { label: "Browse", href: "/browse" },
