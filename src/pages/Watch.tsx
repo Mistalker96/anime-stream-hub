@@ -7,6 +7,7 @@ import VideoPlayer from "@/components/VideoPlayer";
 import EpisodeList from "@/components/EpisodeList";
 import CommentSection from "@/components/CommentSection";
 import Navbar from "@/components/Navbar";
+import BackButton from "@/components/BackButton";
 
 interface AnimeVideo {
   id: string;
