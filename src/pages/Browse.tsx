@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { ArrowLeft, Star, Film, Eye } from "lucide-react";
 import { Sword, Sparkles, Ghost, Rocket, Heart, Zap, Skull, Laugh } from "lucide-react";
 import { getAnimeImage, animeImageMap } from "@/lib/animeImageMap";
+import Navbar from "@/components/Navbar";
 
 interface Anime {
   id: string;
@@ -45,10 +46,18 @@ const Browse = () => {
   const [loading, setLoading] = useState(true);
   const [selectedGenre, setSelectedGenre] = useState(searchParams.get("genre") || "All");
   const [similarAnime, setSimilarAnime] = useState<Anime[]>([]);
+  const [searchQuery, setSearchQuery] = useState(searchParams.get("search") || "");
 
   useEffect(() => {
     fetchAnime();
-  }, [selectedGenre]);
+  }, [selectedGenre, searchQuery]);
+
+  useEffect(() => {
+    const search = searchParams.get("search") || "";
+    if (search !== searchQuery) {
+      setSearchQuery(search);
+    }
+  }, [searchParams]);
 
   const fetchAnime = async () => {
     setLoading(true);
@@ -61,6 +70,10 @@ const Browse = () => {
       query = query.ilike("genre", `%${selectedGenre}%`);
     }
 
+    if (searchQuery) {
+      query = query.ilike("title", `%${searchQuery}%`);
+    }
+
     const { data, error } = await query.order("view_count", { ascending: false });
 
     if (!error && data && data.length > 0) {
@@ -71,10 +84,13 @@ const Browse = () => {
       ).slice(0, 6);
       setSimilarAnime(otherGenres);
     } else {
-      // Use mock data filtered by genre
-      const filtered = selectedGenre === "All" 
+      // Use mock data filtered by genre and search
+      let filtered = selectedGenre === "All" 
         ? mockAnime 
         : mockAnime.filter(a => a.genre.toLowerCase().includes(selectedGenre.toLowerCase()));
+      if (searchQuery) {
+        filtered = filtered.filter(a => a.title.toLowerCase().includes(searchQuery.toLowerCase()));
+      }
       setAnimeList(filtered.map(a => ({ ...a, thumbnail_url: null, view_count: a.view_count })));
       
       const similar = mockAnime.filter(a => 
@@ -110,6 +126,7 @@ const Browse = () => {
 
   return (
     <div className="min-h-screen bg-background pt-20 pb-16">
+      <Navbar />
       <div className="container mx-auto px-4">
         {/* Header */}
         <div className="flex items-center gap-4 mb-8">
@@ -117,7 +134,7 @@ const Browse = () => {
             <ArrowLeft className="w-5 h-5" />
           </Button>
           <h1 className="text-3xl font-bold font-space-grotesk">
-            Browse by <span className="gradient-text">Genre</span>
+            {searchQuery ? <>Kết quả: <span className="gradient-text">"{searchQuery}"</span></> : <>Duyệt theo <span className="gradient-text">Thể Loại</span></>}
           </h1>
         </div>
 

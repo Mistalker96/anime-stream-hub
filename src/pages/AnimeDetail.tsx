@@ -8,6 +8,7 @@ import CommentSection from "@/components/CommentSection";
 import EpisodeList from "@/components/EpisodeList";
 import { getAnimeImage, animeImageMap } from "@/lib/animeImageMap";
 import anime1 from "@/assets/anime-1.jpg";
+import Navbar from "@/components/Navbar";
 
 interface AnimeData {
   id: string;
@@ -183,6 +184,7 @@ const AnimeDetail = () => {
 
   return (
     <div className="min-h-screen bg-background">
+      <Navbar />
       {/* Hero Banner */}
       <div className="relative h-[60vh] w-full">
         <img

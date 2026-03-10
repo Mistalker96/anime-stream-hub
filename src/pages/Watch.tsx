@@ -6,6 +6,7 @@ import { ArrowLeft, Eye, Star } from "lucide-react";
 import VideoPlayer from "@/components/VideoPlayer";
 import EpisodeList from "@/components/EpisodeList";
 import CommentSection from "@/components/CommentSection";
+import Navbar from "@/components/Navbar";
 
 interface AnimeVideo {
   id: string;
@@ -171,39 +172,7 @@ const Watch = () => {
 
   return (
     <div className="min-h-screen bg-background">
-      {/* Header */}
-      <div className="fixed top-0 left-0 right-0 z-50 glass">
-        <div className="container mx-auto px-4 h-16 flex items-center justify-between">
-          <div className="flex items-center gap-4">
-            <Button variant="ghost" size="icon" onClick={() => navigate(`/anime/${id}`)}>
-              <ArrowLeft className="w-5 h-5" />
-            </Button>
-            <div>
-              <h1 className="font-semibold text-foreground">
-                {video?.title || "Video Player"}
-              </h1>
-              <p className="text-sm text-muted-foreground">
-                Episode {currentEpisode} {video?.genre && `• ${video.genre}`}
-              </p>
-            </div>
-          </div>
-          
-          {/* View Count & Rating */}
-          <div className="flex items-center gap-4 text-sm">
-            <div className="flex items-center gap-1 text-muted-foreground">
-              <Eye className="w-4 h-4" />
-              <span>{((video?.view_count || 0) / 1000).toFixed(1)}k views</span>
-            </div>
-            {averageRating && (
-              <div className="flex items-center gap-1">
-                <Star className="w-4 h-4 text-primary fill-primary" />
-                <span className="text-foreground font-medium">{averageRating}</span>
-                <span className="text-muted-foreground">({totalRatings})</span>
-              </div>
-            )}
-          </div>
-        </div>
-      </div>
+      <Navbar />
 
       {/* Video Player */}
       <div className="pt-16">

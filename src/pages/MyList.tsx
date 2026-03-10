@@ -4,6 +4,7 @@ import { supabase } from "@/integrations/supabase/client";
 import { useAuth } from "@/hooks/useAuth";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft, Trash2, Play, Star, Film, FolderPlus } from "lucide-react";
+import Navbar from "@/components/Navbar";
 // AI-generated images matching anime titles
 import dragonsFlame from "@/assets/anime-dragons-flame.jpg";
 import midnightBlade from "@/assets/anime-midnight-blade.jpg";
@@ -136,6 +137,7 @@ const MyList = () => {
   if (!user) {
     return (
       <div className="min-h-screen bg-background pt-20">
+        <Navbar />
         <div className="container mx-auto px-4">
           <div className="flex items-center gap-4 mb-8">
             <Button variant="ghost" size="icon" onClick={() => navigate("/")}>
@@ -156,6 +158,7 @@ const MyList = () => {
 
   return (
     <div className="min-h-screen bg-background pt-20">
+      <Navbar />
       <div className="container mx-auto px-4">
         <div className="flex items-center gap-4 mb-8">
           <Button variant="ghost" size="icon" onClick={() => navigate("/")}>
