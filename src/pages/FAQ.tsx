@@ -1,5 +1,6 @@
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import BackButton from "@/components/BackButton";
 import {
   Accordion,
   AccordionContent,
@@ -48,6 +49,7 @@ const FAQ = () => {
       <Navbar />
       <div className="pt-24 pb-16">
         <div className="container mx-auto px-4 max-w-4xl">
+          <BackButton />
           <div className="text-center mb-12">
             <h1 className="text-4xl font-bold font-space-grotesk mb-4">
               Câu Hỏi <span className="gradient-text">Thường Gặp</span>
