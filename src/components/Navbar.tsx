@@ -13,9 +13,9 @@ const Navbar = () => {
   const { user, signOut } = useAuth();
 
   const navLinks = [
-    { label: "Trang Chủ", href: "/" },
-    { label: "Thư Viện", href: "/browse" },
-    { label: "Danh Sách", href: "/my-list" },
+    { label: "Home", href: "/" },
+    { label: "Browse", href: "/browse" },
+    { label: "My List", href: "/my-list" },
   ];
 
   const handleLogoClick = () => {

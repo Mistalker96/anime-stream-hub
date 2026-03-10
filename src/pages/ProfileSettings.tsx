@@ -7,7 +7,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { ArrowLeft, User, MapPin, Lock, Save, Loader2 } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
-
+import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 
 interface Profile {
@@ -131,6 +131,7 @@ const ProfileSettings = () => {
   if (!user) {
     return (
       <div className="min-h-screen bg-background">
+        <Navbar />
         <div className="pt-20 container mx-auto px-4">
           <div className="text-center py-16">
             <p className="text-muted-foreground mb-4">Đăng nhập để truy cập cài đặt</p>
@@ -146,6 +147,7 @@ const ProfileSettings = () => {
 
   return (
     <div className="min-h-screen bg-background">
+      <Navbar />
       <div className="pt-20 pb-16 container mx-auto px-4">
         <div className="flex items-center gap-4 mb-8">
           <Button variant="ghost" size="icon" onClick={() => navigate(-1)}>
