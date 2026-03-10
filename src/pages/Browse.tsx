@@ -70,6 +70,10 @@ const Browse = () => {
       query = query.ilike("genre", `%${selectedGenre}%`);
     }
 
+    if (searchQuery) {
+      query = query.ilike("title", `%${searchQuery}%`);
+    }
+
     const { data, error } = await query.order("view_count", { ascending: false });
 
     if (!error && data && data.length > 0) {
