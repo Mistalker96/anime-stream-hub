@@ -1,10 +1,8 @@
-import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 
 const Privacy = () => {
   return (
     <main className="min-h-screen bg-background">
-      <Navbar />
       <div className="pt-24 pb-16">
         <div className="container mx-auto px-4 max-w-4xl">
           <div className="text-center mb-12">
