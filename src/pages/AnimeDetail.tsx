@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
+import { Button } from "@/components/ui/button";
 import { Play, Plus, Check, Star, Calendar, Film, Eye } from "lucide-react";
 import BackButton from "@/components/BackButton";
 import { useAnimeList } from "@/hooks/useAnimeList";
