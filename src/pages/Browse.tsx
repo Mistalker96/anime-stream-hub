@@ -84,10 +84,13 @@ const Browse = () => {
       ).slice(0, 6);
       setSimilarAnime(otherGenres);
     } else {
-      // Use mock data filtered by genre
-      const filtered = selectedGenre === "All" 
+      // Use mock data filtered by genre and search
+      let filtered = selectedGenre === "All" 
         ? mockAnime 
         : mockAnime.filter(a => a.genre.toLowerCase().includes(selectedGenre.toLowerCase()));
+      if (searchQuery) {
+        filtered = filtered.filter(a => a.title.toLowerCase().includes(searchQuery.toLowerCase()));
+      }
       setAnimeList(filtered.map(a => ({ ...a, thumbnail_url: null, view_count: a.view_count })));
       
       const similar = mockAnime.filter(a => 
