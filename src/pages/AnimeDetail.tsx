@@ -184,6 +184,7 @@ const AnimeDetail = () => {
 
   return (
     <div className="min-h-screen bg-background">
+      <Navbar />
       {/* Hero Banner */}
       <div className="relative h-[60vh] w-full">
         <img
