@@ -85,6 +85,15 @@ const Auth = () => {
       </div>
 
       <div className="relative w-full max-w-md">
+        {/* Back Button */}
+        <button
+          onClick={() => navigate(-1)}
+          className="flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors mb-6 group"
+        >
+          <ArrowLeft className="w-5 h-5 group-hover:-translate-x-1 transition-transform" />
+          <span className="text-sm font-medium">Quay lại</span>
+        </button>
+
         {/* Logo */}
         <div className="text-center mb-8">
           <button
@@ -94,7 +103,7 @@ const Auth = () => {
             AniWatch
           </button>
           <p className="text-muted-foreground mt-2">
-            {isLogin ? "Welcome back, anime fan!" : "Join the community!"}
+            {isLogin ? "Chào mừng trở lại!" : "Tham gia cộng đồng anime!"}
           </p>
         </div>
 
