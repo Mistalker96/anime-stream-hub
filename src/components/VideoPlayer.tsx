@@ -80,7 +80,7 @@ const VideoPlayer = ({
   }, []);
 
   useEffect(() => {
-    let timeout: ReturnType<typeof setTimeout>;
+    let timeout: NodeJS.Timeout;
     const handleMouseMove = () => {
       setShowControls(true);
       clearTimeout(timeout);
