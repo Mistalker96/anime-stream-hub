@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useToast } from "@/hooks/use-toast";
-import { Eye, EyeOff, Mail, Lock, User } from "lucide-react";
+import { Eye, EyeOff, Mail, Lock, User, ArrowLeft } from "lucide-react";
 
 const Auth = () => {
   const [isLogin, setIsLogin] = useState(true);
@@ -45,8 +45,8 @@ const Auth = () => {
         });
         if (error) throw error;
         toast({
-          title: "Welcome back!",
-          description: "Successfully logged in.",
+          title: "Chào mừng trở lại!",
+          description: "Đăng nhập thành công.",
         });
       } else {
         const { error } = await supabase.auth.signUp({
@@ -61,8 +61,8 @@ const Auth = () => {
         });
         if (error) throw error;
         toast({
-          title: "Account created!",
-          description: "Welcome to AniWatch!",
+          title: "Tạo tài khoản thành công!",
+          description: "Chào mừng đến với AniWatch!",
         });
       }
     } catch (error: any) {
@@ -85,6 +85,15 @@ const Auth = () => {
       </div>
 
       <div className="relative w-full max-w-md">
+        {/* Back Button */}
+        <button
+          onClick={() => navigate(-1)}
+          className="flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors mb-6 group"
+        >
+          <ArrowLeft className="w-5 h-5 group-hover:-translate-x-1 transition-transform" />
+          <span className="text-sm font-medium">Quay lại</span>
+        </button>
+
         {/* Logo */}
         <div className="text-center mb-8">
           <button
@@ -94,7 +103,7 @@ const Auth = () => {
             AniWatch
           </button>
           <p className="text-muted-foreground mt-2">
-            {isLogin ? "Welcome back, anime fan!" : "Join the community!"}
+            {isLogin ? "Chào mừng trở lại!" : "Tham gia cộng đồng anime!"}
           </p>
         </div>
 
@@ -103,13 +112,13 @@ const Auth = () => {
           <form onSubmit={handleAuth} className="space-y-6">
             {!isLogin && (
               <div className="space-y-2">
-                <Label htmlFor="username">Username</Label>
+                <Label htmlFor="username">Tên người dùng</Label>
                 <div className="relative">
                   <User className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
                   <Input
                     id="username"
                     type="text"
-                    placeholder="Choose a username"
+                    placeholder="Chọn tên người dùng"
                     value={username}
                     onChange={(e) => setUsername(e.target.value)}
                     className="pl-10 bg-secondary/50 border-border"
@@ -120,7 +129,7 @@ const Auth = () => {
             )}
 
             <div className="space-y-2">
-              <Label htmlFor="email">Email</Label>
+              <Label htmlFor="email">Địa chỉ Email</Label>
               <div className="relative">
                 <Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
                 <Input
@@ -136,7 +145,7 @@ const Auth = () => {
             </div>
 
             <div className="space-y-2">
-              <Label htmlFor="password">Password</Label>
+              <Label htmlFor="password">Mật khẩu</Label>
               <div className="relative">
                 <Lock className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
                 <Input
@@ -166,19 +175,19 @@ const Auth = () => {
               className="w-full"
               disabled={loading}
             >
-              {loading ? "Loading..." : isLogin ? "Sign In" : "Create Account"}
+              {loading ? "Đang xử lý..." : isLogin ? "Đăng Nhập" : "Tạo Tài Khoản"}
             </Button>
           </form>
 
           <div className="mt-6 text-center">
             <p className="text-muted-foreground text-sm">
-              {isLogin ? "Don't have an account?" : "Already have an account?"}
+              {isLogin ? "Chưa có tài khoản?" : "Đã có tài khoản?"}
               <button
                 type="button"
                 onClick={() => setIsLogin(!isLogin)}
                 className="text-primary hover:text-primary/80 ml-2 font-medium transition-colors"
               >
-                {isLogin ? "Sign Up" : "Sign In"}
+                {isLogin ? "Đăng Ký" : "Đăng Nhập"}
               </button>
             </p>
           </div>
