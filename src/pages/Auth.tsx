@@ -181,13 +181,13 @@ const Auth = () => {
 
           <div className="mt-6 text-center">
             <p className="text-muted-foreground text-sm">
-              {isLogin ? "Don't have an account?" : "Already have an account?"}
+              {isLogin ? "Chưa có tài khoản?" : "Đã có tài khoản?"}
               <button
                 type="button"
                 onClick={() => setIsLogin(!isLogin)}
                 className="text-primary hover:text-primary/80 ml-2 font-medium transition-colors"
               >
-                {isLogin ? "Sign Up" : "Sign In"}
+                {isLogin ? "Đăng Ký" : "Đăng Nhập"}
               </button>
             </p>
           </div>
