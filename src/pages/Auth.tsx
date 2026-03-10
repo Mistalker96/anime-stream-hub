@@ -175,7 +175,7 @@ const Auth = () => {
               className="w-full"
               disabled={loading}
             >
-              {loading ? "Loading..." : isLogin ? "Sign In" : "Create Account"}
+              {loading ? "Đang xử lý..." : isLogin ? "Đăng Nhập" : "Tạo Tài Khoản"}
             </Button>
           </form>
 
