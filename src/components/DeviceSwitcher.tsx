@@ -1,4 +1,4 @@
-import { Monitor, Tablet, Smartphone } from "lucide-react";
+import { Monitor, Tablet } from "lucide-react";
 import { useViewportMode, DeviceMode } from "@/contexts/ViewportContext";
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
 
