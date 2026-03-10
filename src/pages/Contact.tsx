@@ -57,7 +57,6 @@ const Contact = () => {
 
   return (
     <main className="min-h-screen bg-background">
-      <Navbar />
       <div className="pt-24 pb-16">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
