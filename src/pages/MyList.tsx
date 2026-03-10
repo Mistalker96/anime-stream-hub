@@ -4,6 +4,7 @@ import { supabase } from "@/integrations/supabase/client";
 import { useAuth } from "@/hooks/useAuth";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft, Trash2, Play, Star, Film, FolderPlus } from "lucide-react";
+import Navbar from "@/components/Navbar";
 // AI-generated images matching anime titles
 import dragonsFlame from "@/assets/anime-dragons-flame.jpg";
 import midnightBlade from "@/assets/anime-midnight-blade.jpg";

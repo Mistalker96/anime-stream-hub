@@ -126,6 +126,7 @@ const Browse = () => {
 
   return (
     <div className="min-h-screen bg-background pt-20 pb-16">
+      <Navbar />
       <div className="container mx-auto px-4">
         {/* Header */}
         <div className="flex items-center gap-4 mb-8">
@@ -133,7 +134,7 @@ const Browse = () => {
             <ArrowLeft className="w-5 h-5" />
           </Button>
           <h1 className="text-3xl font-bold font-space-grotesk">
-            Browse by <span className="gradient-text">Genre</span>
+            {searchQuery ? <>Kết quả: <span className="gradient-text">"{searchQuery}"</span></> : <>Duyệt theo <span className="gradient-text">Thể Loại</span></>}
           </h1>
         </div>
 
