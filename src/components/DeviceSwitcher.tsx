@@ -4,8 +4,7 @@ import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip
 
 const devices: { mode: DeviceMode; icon: typeof Monitor; label: string }[] = [
   { mode: "desktop", icon: Monitor, label: "PC" },
-  { mode: "tablet", icon: Tablet, label: "Tablet" },
-  { mode: "mobile", icon: Smartphone, label: "Điện thoại" },
+  { mode: "tablet", icon: Tablet, label: "Mobile" },
 ];
 
 const DeviceSwitcher = () => {
