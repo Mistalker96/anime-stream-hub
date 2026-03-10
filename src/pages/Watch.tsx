@@ -6,6 +6,7 @@ import { ArrowLeft, Eye, Star } from "lucide-react";
 import VideoPlayer from "@/components/VideoPlayer";
 import EpisodeList from "@/components/EpisodeList";
 import CommentSection from "@/components/CommentSection";
+import Navbar from "@/components/Navbar";
 
 interface AnimeVideo {
   id: string;
