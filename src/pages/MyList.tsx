@@ -3,7 +3,8 @@ import { useNavigate } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
 import { useAuth } from "@/hooks/useAuth";
 import { Button } from "@/components/ui/button";
-import { ArrowLeft, Trash2, Play, Star, Film, FolderPlus } from "lucide-react";
+import { Trash2, Play, Star, Film, FolderPlus } from "lucide-react";
+import BackButton from "@/components/BackButton";
 import Navbar from "@/components/Navbar";
 // AI-generated images matching anime titles
 import dragonsFlame from "@/assets/anime-dragons-flame.jpg";
@@ -136,13 +137,11 @@ const MyList = () => {
 
   if (!user) {
     return (
-      <div className="min-h-screen bg-background pt-20">
+      <div className="min-h-screen bg-background pt-20 relative">
         <Navbar />
+        <BackButton floating />
         <div className="container mx-auto px-4">
-          <div className="flex items-center gap-4 mb-8">
-            <Button variant="ghost" size="icon" onClick={() => navigate("/")}>
-              <ArrowLeft className="w-5 h-5" />
-            </Button>
+          <div className="mb-8">
             <h1 className="text-3xl font-bold font-space-grotesk">My List</h1>
           </div>
           <div className="text-center py-16">
@@ -157,13 +156,11 @@ const MyList = () => {
   }
 
   return (
-    <div className="min-h-screen bg-background pt-20">
+    <div className="min-h-screen bg-background pt-20 relative">
       <Navbar />
+      <BackButton floating />
       <div className="container mx-auto px-4">
-        <div className="flex items-center gap-4 mb-8">
-          <Button variant="ghost" size="icon" onClick={() => navigate("/")}>
-            <ArrowLeft className="w-5 h-5" />
-          </Button>
+        <div className="mb-8">
           <h1 className="text-3xl font-bold font-space-grotesk">
             My <span className="gradient-text">List</span>
           </h1>

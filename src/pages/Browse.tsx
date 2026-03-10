@@ -2,7 +2,8 @@ import { useState, useEffect } from "react";
 import { useSearchParams, useNavigate } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
-import { ArrowLeft, Star, Film, Eye } from "lucide-react";
+import { Star, Film, Eye } from "lucide-react";
+import BackButton from "@/components/BackButton";
 import { Sword, Sparkles, Ghost, Rocket, Heart, Zap, Skull, Laugh } from "lucide-react";
 import { getAnimeImage, animeImageMap } from "@/lib/animeImageMap";
 import Navbar from "@/components/Navbar";
@@ -125,14 +126,12 @@ const Browse = () => {
   };
 
   return (
-    <div className="min-h-screen bg-background pt-20 pb-16">
+    <div className="min-h-screen bg-background pt-20 pb-16 relative">
       <Navbar />
+      <BackButton floating />
       <div className="container mx-auto px-4">
         {/* Header */}
-        <div className="flex items-center gap-4 mb-8">
-          <Button variant="ghost" size="icon" onClick={() => navigate("/")}>
-            <ArrowLeft className="w-5 h-5" />
-          </Button>
+        <div className="mb-8">
           <h1 className="text-3xl font-bold font-space-grotesk">
             {searchQuery ? <>Kết quả: <span className="gradient-text">"{searchQuery}"</span></> : <>Duyệt theo <span className="gradient-text">Thể Loại</span></>}
           </h1>

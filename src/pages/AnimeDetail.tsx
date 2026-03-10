@@ -2,7 +2,8 @@ import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
-import { ArrowLeft, Play, Plus, Check, Star, Calendar, Film, Eye } from "lucide-react";
+import { Play, Plus, Check, Star, Calendar, Film, Eye } from "lucide-react";
+import BackButton from "@/components/BackButton";
 import { useAnimeList } from "@/hooks/useAnimeList";
 import CommentSection from "@/components/CommentSection";
 import EpisodeList from "@/components/EpisodeList";
@@ -195,14 +196,7 @@ const AnimeDetail = () => {
         <div className="absolute inset-0 bg-gradient-to-t from-background via-background/60 to-transparent" />
         <div className="absolute inset-0 bg-gradient-to-r from-background/80 via-transparent to-transparent" />
 
-        <Button
-          variant="glass"
-          size="icon"
-          className="absolute top-4 left-4 z-10"
-          onClick={() => navigate("/")}
-        >
-          <ArrowLeft className="w-5 h-5" />
-        </Button>
+        <BackButton floating />
       </div>
 
       {/* Content */}
