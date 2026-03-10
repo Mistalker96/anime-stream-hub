@@ -7,6 +7,7 @@ import VideoPlayer from "@/components/VideoPlayer";
 import EpisodeList from "@/components/EpisodeList";
 import CommentSection from "@/components/CommentSection";
 import Navbar from "@/components/Navbar";
+import BackButton from "@/components/BackButton";
 
 interface AnimeVideo {
   id: string;
@@ -188,6 +189,7 @@ const Watch = () => {
 
       {/* Content */}
       <div className="container mx-auto px-4 py-8">
+        <BackButton />
         {/* Current Episode Info */}
         <div className="mb-8 p-4 glass rounded-xl">
           <div className="flex items-center justify-between mb-2">
