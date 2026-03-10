@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { ArrowLeft, Star, Film, Eye } from "lucide-react";
 import { Sword, Sparkles, Ghost, Rocket, Heart, Zap, Skull, Laugh } from "lucide-react";
 import { getAnimeImage, animeImageMap } from "@/lib/animeImageMap";
+import Navbar from "@/components/Navbar";
 
 interface Anime {
   id: string;
