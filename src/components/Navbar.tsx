@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { useAuth } from "@/hooks/useAuth";
 import UserDropdown from "@/components/UserDropdown";
 import { ThemeToggle } from "@/components/ThemeToggle";
+import DeviceSwitcher from "@/components/DeviceSwitcher";
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
