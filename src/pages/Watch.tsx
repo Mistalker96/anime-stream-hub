@@ -176,7 +176,8 @@ const Watch = () => {
       <Navbar />
 
       {/* Video Player */}
-      <div className="pt-16">
+      <div className="pt-16 relative">
+        <BackButton floating />
         <VideoPlayer
           src={currentVideoPath}
           title={`${video?.title} - Episode ${currentEpisode}`}
@@ -189,7 +190,6 @@ const Watch = () => {
 
       {/* Content */}
       <div className="container mx-auto px-4 py-8">
-        <BackButton />
         {/* Current Episode Info */}
         <div className="mb-8 p-4 glass rounded-xl">
           <div className="flex items-center justify-between mb-2">
