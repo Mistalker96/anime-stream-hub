@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import BackButton from "@/components/BackButton";
@@ -79,12 +80,12 @@ const FAQ = () => {
             <p className="text-muted-foreground mb-4">
               Liên hệ với đội ngũ hỗ trợ của chúng tôi để được giúp đỡ
             </p>
-            <a 
-              href="/contact" 
+            <Link 
+              to="/contact" 
               className="inline-flex items-center gap-2 bg-primary text-primary-foreground px-6 py-3 rounded-lg font-medium hover:bg-primary/90 transition-colors"
             >
               Liên Hệ Ngay
-            </a>
+            </Link>
           </div>
         </div>
       </div>
