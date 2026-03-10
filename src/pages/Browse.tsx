@@ -46,10 +46,18 @@ const Browse = () => {
   const [loading, setLoading] = useState(true);
   const [selectedGenre, setSelectedGenre] = useState(searchParams.get("genre") || "All");
   const [similarAnime, setSimilarAnime] = useState<Anime[]>([]);
+  const [searchQuery, setSearchQuery] = useState(searchParams.get("search") || "");
 
   useEffect(() => {
     fetchAnime();
-  }, [selectedGenre]);
+  }, [selectedGenre, searchQuery]);
+
+  useEffect(() => {
+    const search = searchParams.get("search") || "";
+    if (search !== searchQuery) {
+      setSearchQuery(search);
+    }
+  }, [searchParams]);
 
   const fetchAnime = async () => {
     setLoading(true);
