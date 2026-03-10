@@ -176,7 +176,8 @@ const Watch = () => {
       <Navbar />
 
       {/* Video Player */}
-      <div className="pt-16">
+      <div className="pt-16 relative">
+        <BackButton />
         <VideoPlayer
           src={currentVideoPath}
           title={`${video?.title} - Episode ${currentEpisode}`}
