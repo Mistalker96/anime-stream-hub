@@ -61,8 +61,8 @@ const Auth = () => {
         });
         if (error) throw error;
         toast({
-          title: "Account created!",
-          description: "Welcome to AniWatch!",
+          title: "Tạo tài khoản thành công!",
+          description: "Chào mừng đến với AniWatch!",
         });
       }
     } catch (error: any) {
