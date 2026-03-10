@@ -45,8 +45,8 @@ const Auth = () => {
         });
         if (error) throw error;
         toast({
-          title: "Welcome back!",
-          description: "Successfully logged in.",
+          title: "Chào mừng trở lại!",
+          description: "Đăng nhập thành công.",
         });
       } else {
         const { error } = await supabase.auth.signUp({
