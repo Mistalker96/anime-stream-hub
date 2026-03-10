@@ -126,14 +126,12 @@ const Browse = () => {
   };
 
   return (
-    <div className="min-h-screen bg-background pt-20 pb-16">
+    <div className="min-h-screen bg-background pt-20 pb-16 relative">
       <Navbar />
+      <BackButton floating />
       <div className="container mx-auto px-4">
         {/* Header */}
-        <div className="flex items-center gap-4 mb-8">
-          <Button variant="ghost" size="icon" onClick={() => navigate("/")}>
-            <ArrowLeft className="w-5 h-5" />
-          </Button>
+        <div className="mb-8">
           <h1 className="text-3xl font-bold font-space-grotesk">
             {searchQuery ? <>Kết quả: <span className="gradient-text">"{searchQuery}"</span></> : <>Duyệt theo <span className="gradient-text">Thể Loại</span></>}
           </h1>
