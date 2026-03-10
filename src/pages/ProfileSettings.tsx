@@ -131,7 +131,6 @@ const ProfileSettings = () => {
   if (!user) {
     return (
       <div className="min-h-screen bg-background">
-        <Navbar />
         <div className="pt-20 container mx-auto px-4">
           <div className="text-center py-16">
             <p className="text-muted-foreground mb-4">Đăng nhập để truy cập cài đặt</p>
